@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { USERS } from '../../data/users';
 
 @Component({
@@ -14,14 +14,20 @@ export class UserComponent {
     return USERS[index];
   }
 
-  user = UserComponent.random();
+  // signal is an alternative to Zone.js
+  user = signal(UserComponent.random()); // assign a signal to listen to value changes
+  // user = UserComponent.random();
 
-  // get: defines a getter method, so imgPath acts like a property, not a function
-  get imgPath() {
-    return `/users/${this.user.img}`;
-  }
+  // with signals, getters need to be defined with the computed function
+  imgPath = computed(() => `/users/${this.user().img}`); // alt to getter method
+
+  // getter method: imgPath is called like a property, not a function()
+  // get imgPath() {
+  //   return `/users/${this.user.img}`;
+  // }
 
   selectUser() {
-    this.user = UserComponent.random();
+    this.user.set(UserComponent.random()); // signals use .set() to update the value
+    // this.user = UserComponent.random();
   }
 }
