@@ -1,7 +1,7 @@
-<li>
+<ul>
   <!-- signal values must all be called as functions(), zone.js values as props -->
-  <button (click)="selectUser()" >
-    <img [src]="imgPath()" [alt]="user().name" />
-    <span>{{ user().name }}</span>
-  </button>
-</li>
+  <li *ngFor="let user of users()" (click)="selectUser(user)">
+    <img [src]="'/users/' + user.img" [alt]="user.name" />
+    <span>{{ user.name }}</span>
+  </li>
+</ul>

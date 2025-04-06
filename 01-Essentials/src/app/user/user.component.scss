@@ -1,19 +1,28 @@
-li {
-  border-radius: 6px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+// default Angular component wrapper
+:host {
   display: flex;
-  height: 100%;
+  overflow: hidden;
 }
 
-button {
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem;
+  display: flex;
+  gap: 0.5rem;
+  overflow: auto;
+}
+
+li {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.35rem 0.5rem;
   background-color: #433352;
   color: #c3b3d1;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
   border: none;
+  border-radius: 6px;
   font: inherit;
   cursor: pointer;
   width: 100%;
@@ -41,4 +50,10 @@ span {
   padding: 0;
   font-size: 0.8rem;
   font-weight: normal;
+}
+
+@media (min-width: 768px) {
+  ul {
+    flex-direction: column;
+  }
 }

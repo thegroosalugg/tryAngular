@@ -3,12 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { USERS } from '../data/users';
-import { NgFor } from '@angular/common';
 import { User } from './models/User';
 
 @Component({
      selector: 'app-root',
-      imports: [NgFor, HeaderComponent, UserComponent],
+      imports: [HeaderComponent, UserComponent],
   templateUrl: './app.component.html',
      styleUrl: './app.component.scss'
 })
