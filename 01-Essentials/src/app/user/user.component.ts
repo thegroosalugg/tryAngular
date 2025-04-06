@@ -1,5 +1,5 @@
-import { Component, computed, signal } from '@angular/core';
-import { USERS } from '../../data/users';
+import { Component, Input } from '@angular/core';
+import { User } from '../models/User';
 
 @Component({
      selector: 'app-user',
@@ -9,25 +9,11 @@ import { USERS } from '../../data/users';
 })
 
 export class UserComponent {
-  private static random() {
-    const index = Math.floor(Math.random() * USERS.length);
-    return USERS[index];
+  @Input({ required: true }) user!: User; // @Input: equivalent to FC props in React
+
+  get imgPath() {
+    return `/users/${this.user.img}`;
   }
 
-  // signal is an alternative to Zone.js
-  user = signal(UserComponent.random()); // assign a signal to listen to value changes
-  // user = UserComponent.random();
-
-  // with signals, getters need to be defined with the computed function
-  imgPath = computed(() => `/users/${this.user().img}`); // alt to getter method
-
-  // getter method: imgPath is called like a property, not a function()
-  // get imgPath() {
-  //   return `/users/${this.user.img}`;
-  // }
-
-  selectUser() {
-    this.user.set(UserComponent.random()); // signals use .set() to update the value
-    // this.user = UserComponent.random();
-  }
+  selectUser() {}
 }

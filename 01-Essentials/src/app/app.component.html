@@ -1,8 +1,6 @@
 <app-header></app-header>
 <main>
   <ul id="users">
-    <li>
-      <app-user></app-user>
-    </li>
+    <app-user *ngFor="let user of users" [user]="user"></app-user>
   </ul>
 </main>
