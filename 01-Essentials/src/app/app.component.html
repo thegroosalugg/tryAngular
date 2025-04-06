@@ -1,6 +1,10 @@
 <app-header></app-header>
 <main>
   <ul id="users">
-    <app-user *ngFor="let user of users" [user]="user"></app-user>
+    <app-user
+        *ngFor="let user of users"
+        [user]="user"
+      (select)="onSelect($event)"
+    ></app-user>
   </ul>
 </main>
