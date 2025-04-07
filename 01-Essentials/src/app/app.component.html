@@ -1,7 +1,9 @@
 <app-header></app-header>
 <main>
-  <app-user
-     [users]="users"
-    (select)="onSelect($event)"
-  ></app-user>
+  <app-user [users]="users" (select)="onSelect($event)"></app-user>
+  @if (user) {
+    <app-tasks [user]="user"></app-tasks>
+  } @else {
+    <p id="fallback">Click a button!</p>
+  }
 </main>

@@ -1,7 +1,9 @@
 <ul>
   <!-- signal values must all be called as functions(), zone.js values as props -->
-  <li *ngFor="let user of users()" (click)="selectUser(user)">
-    <img [src]="'/users/' + user.img" [alt]="user.name" />
-    <span>{{ user.name }}</span>
-  </li>
+  @for (user of users(); track user.id) {
+    <li [ngClass]="{ active: isActive === user }" (click)="selectUser(user)">
+      <img [src]="'/users/' + user.img" [alt]="user.name" />
+      <span>{{ user.name }}</span>
+    </li>
+  }
 </ul>

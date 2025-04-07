@@ -1,0 +1,21 @@
+<section id="tasks">
+  <header>
+    <h2>{{ user().name }}'s Tasks</h2>
+    <button>Add Task</button>
+  </header>
+  @if (userTasks().length > 0) {
+    <ul>
+      @for (task of userTasks(); track task.id) {
+        <li>
+          <h3>{{ task.title }}</h3>
+          <time>{{ task.dueDate }}</time>
+          <div class="actions">
+            <button>Button</button>
+          </div>
+        </li>
+      }
+    </ul>
+  } @else {
+    <div>{{ userTasks().length }} tasks</div>
+  }
+</section>
