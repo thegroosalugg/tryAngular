@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { User } from './models/User';
+import { Task } from './models/Task';
 import { USERS } from '../data/users';
 import { TASKS } from '../data/tasks';
 
@@ -21,6 +22,10 @@ export class AppComponent {
   user: User | null = null;
 
   onSelect(user: User) {
-    this.user = user;
+    this.user = user; // emitted values from child component
+  }
+
+  onComplete(task: Task) {
+    this.tasks = this.tasks.filter(({ id }) => id !== task.id);
   }
 }

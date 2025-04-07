@@ -11,7 +11,7 @@
           <time>{{ task.dueDate }}</time>
           <p>{{ task.summary }}</p>
           <div class="actions">
-            <button>Complete</button>
+            <button (click)="setCompleted(task)">Complete</button>
           </div>
         </li>
       }
