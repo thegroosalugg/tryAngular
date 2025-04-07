@@ -1,10 +1,9 @@
 import { Component, input, output } from '@angular/core';
-import { NgClass } from '@angular/common';
 import { User } from '../models/User';
 
 @Component({
      selector: 'app-user',
-      imports: [NgClass],
+      imports: [],
   templateUrl: './user.component.html',
      styleUrl: './user.component.scss',
 })
