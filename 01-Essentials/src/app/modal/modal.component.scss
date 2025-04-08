@@ -17,6 +17,7 @@
 #modal {
   position: fixed; /* fixed overrides Browser default absolute */
   margin: 0; /* Resets the default (uncentering) margin on dialog Elements */
+  padding: 0;
   top: 50%; /* positioning props work on dialog without the actual position prop */
   left: 50%;
   transform: translate(-50%, -50%);
@@ -25,7 +26,7 @@
   width: 90%;
   overflow: auto;
   border: none;
-  background: #fff;
+  background: none;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   z-index: 10;
