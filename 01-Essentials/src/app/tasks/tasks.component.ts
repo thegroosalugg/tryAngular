@@ -12,6 +12,7 @@ export class TasksComponent {
   user     = input.required<User>(); // receive props (Readonly)
   tasks    = input.required<Task[]>();
   complete = output<Task>(); // emit event to parent.
+  open     = output<boolean>(); // emit event to parent.
 
   userTasks = computed(() =>
     this.tasks().filter((task) => task.userId === this.user().id)
@@ -19,5 +20,10 @@ export class TasksComponent {
 
   setCompleted(task: Task) {
     this.complete.emit(task);
+  }
+
+  openModal() {
+    console.log('open modal');
+    this.open.emit(true);
   }
 }

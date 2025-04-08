@@ -1,8 +1,14 @@
+<app-modal [open]="showModal" (close)="onToggleModal($event)"></app-modal>
 <app-header></app-header>
 <main>
   <app-user [users]="users" (select)="onSelect($event)"></app-user>
   @if (user) {
-    <app-tasks [user]="user" [tasks]="tasks" (complete)="onComplete($event)"></app-tasks>
+    <app-tasks
+          [user]="user"
+         [tasks]="tasks"
+          (open)="onToggleModal($event)"
+      (complete)="onComplete($event)"
+    ></app-tasks>
   } @else {
     <p id="fallback">Click a button!</p>
   }

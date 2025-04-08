@@ -7,10 +7,11 @@ import { User } from './models/User';
 import { Task } from './models/Task';
 import { USERS } from '../data/users';
 import { TASKS } from '../data/tasks';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
      selector: 'app-root',
-      imports: [HeaderComponent, UserComponent, TasksComponent],
+      imports: [HeaderComponent, UserComponent, TasksComponent, ModalComponent],
   templateUrl: './app.component.html',
      styleUrl: './app.component.scss'
 })
@@ -20,6 +21,7 @@ export class AppComponent {
   users = USERS
   tasks = TASKS
   user: User | null = null;
+  showModal = false;
 
   onSelect(user: User) {
     this.user = user; // emitted values from child component
@@ -27,5 +29,9 @@ export class AppComponent {
 
   onComplete(task: Task) {
     this.tasks = this.tasks.filter(({ id }) => id !== task.id);
+  }
+
+  onToggleModal(toggle: boolean) {
+    this.showModal = toggle;
   }
 }
