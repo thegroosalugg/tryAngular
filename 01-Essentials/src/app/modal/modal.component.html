@@ -1,4 +1,5 @@
 @if (open()) {
   <div id="backdrop" (click)="closeModal()" ></div>
-  <dialog id="modal" open>MODAL</dialog>
+  <!-- empty string sets the attribute with no value, null removes attribute -->
+  <dialog id="modal" open [attr.closing]="isClosing() ? '' : null">MODAL</dialog>
 }
