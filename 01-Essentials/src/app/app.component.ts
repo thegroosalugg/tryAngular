@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
@@ -26,11 +26,12 @@ const imports = [
 })
 
 export class AppComponent {
-  title = '01-Essentials';
-  users = USERS
-  tasks = TASKS
+  title     = '01-Essentials';
+  users     = USERS;
+  tasks     = TASKS;
+  isOpen    = false; // modal open state
+  isClosing = false; // tracks [Modal] closing (animation) state
   user: User | null = null;
-  showModal = false;
 
   onSelectUser(user: User) {
     this.user = user; // emitted values from child component
@@ -40,7 +41,16 @@ export class AppComponent {
     this.tasks = this.tasks.filter(({ id }) => id !== task.id);
   }
 
-  onToggleModal(toggle: boolean) {
-    this.showModal = toggle;
+  onToggleModal(shouldOpen: boolean) {
+    if (shouldOpen) {
+      this.isOpen = true;
+    } else {
+      this.isClosing = true; // start animation
+      // Wait for animation to complete before emitting close event
+      setTimeout(() => {
+        this.isClosing = false; // end animation
+        this.isOpen    = false; // close modal
+      }, 500); // matches animation duration
+    }
   }
 }

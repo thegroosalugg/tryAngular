@@ -8,22 +8,23 @@ import { Task } from '../models/Task';
   templateUrl: './tasks.component.html',
      styleUrl: './tasks.component.scss',
 })
+
 export class TasksComponent {
   user     = input.required<User>(); // receive props (Readonly)
   tasks    = input.required<Task[]>();
   complete = output<Task>(); // emit event to parent.
-  open     = output<boolean>(); // emit event to parent.
+  toggleOn = output<boolean>(); // emit [Modal] event to parent.
 
   userTasks = computed(() =>
     this.tasks().filter((task) => task.userId === this.user().id)
   );
 
-  setCompleted(task: Task) {
+  emitCompleted(task: Task) {
     this.complete.emit(task);
   }
 
-  openModal() {
-    console.log('open modal');
-    this.open.emit(true);
+  emitToggleOn() {
+    console.log('Tasks: open modal');
+    this.toggleOn.emit(true);
   }
 }

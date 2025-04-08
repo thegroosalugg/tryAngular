@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
      selector: 'app-task-form',
@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   templateUrl: './task-form.component.html',
      styleUrl: './task-form.component.scss'
 })
-export class TaskFormComponent {
 
+export class TaskFormComponent {
+  toggleOff = output<boolean>();
+
+  emitToggleOff() {
+    console.log('Tasks-Form: close modal');
+    this.toggleOff.emit(false);
+  }
 }

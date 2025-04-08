@@ -1,7 +1,7 @@
 <section id="tasks">
   <header>
     <h2>{{ user().name }}'s Tasks</h2>
-    <button (click)="openModal()">Add Task</button>
+    <button (click)="emitToggleOn()">Add Task</button>
   </header>
   @if (userTasks().length > 0) {
     <ul>
@@ -11,7 +11,7 @@
           <time>{{ task.dueDate }}</time>
           <p>{{ task.summary }}</p>
           <div class="actions">
-            <button (click)="setCompleted(task)">Complete</button>
+            <button (click)="emitCompleted(task)">Complete</button>
           </div>
         </li>
       }

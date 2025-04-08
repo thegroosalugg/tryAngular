@@ -1,5 +1,9 @@
-<app-modal [open]="showModal" (close)="onToggleModal($event)">
-  <app-task-form></app-task-form>
+<app-modal
+      [isOpen]="isOpen"
+   [isClosing]="isClosing"
+   (toggleOff)="onToggleModal($event)"
+>
+  <app-task-form (toggleOff)="onToggleModal($event)"></app-task-form>
 </app-modal>
 <app-header></app-header>
 <main>
@@ -8,7 +12,7 @@
     <app-tasks
           [user]="user"
          [tasks]="tasks"
-          (open)="onToggleModal($event)"
+      (toggleOn)="onToggleModal($event)"
       (complete)="onCompleteTask($event)"
     ></app-tasks>
   } @else {
