@@ -8,9 +8,9 @@ import { Component, input, output, signal } from '@angular/core';
 })
 
 export class ModalComponent {
-  isOpen     = input.required<boolean>(); // set by parent
-  isClosing  = input.required<boolean>(); // signalled by parent, tracks closing animation state
-  toggleOff  = output<boolean>();         // signal to parent to close the modal
+     isOpen = input.required<boolean>(); // set by parent
+  isClosing = input.required<boolean>(); // tracks closing animation state
+  toggleOff = output<boolean>();         // signal to parent to close the modal
 
   emitToggleOff() {
     console.log('Modal: close modal');

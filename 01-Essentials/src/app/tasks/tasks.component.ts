@@ -10,8 +10,8 @@ import { Task } from 'models/Task';
 })
 
 export class TasksComponent {
-  user     = input.required<User>(); // receive props (Readonly)
-  tasks    = input.required<Task[]>();
+      user = input.required<User>(); // receive props (Readonly)
+     tasks = input.required<Task[]>();
   complete = output<Task>(); // emit event to parent.
   toggleOn = output<boolean>(); // emit [Modal] event to parent.
 

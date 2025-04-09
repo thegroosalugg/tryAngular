@@ -2,7 +2,7 @@
   <!-- signal values must all be called as functions(), zone.js values as props -->
   @for (user of users(); track user.id) {
     <!-- class = prop; .active = custom className; set conditionally -->
-    <li [class.active]="isActive === user" (click)="selectUser(user)">
+    <li [class.active]="isActive() === user" (click)="selectUser(user)">
       <img [src]="'/users/' + user.img" [alt]="user.name" />
       <span>{{ user.name }}</span>
     </li>

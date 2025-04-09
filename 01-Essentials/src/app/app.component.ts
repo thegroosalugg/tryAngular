@@ -26,12 +26,12 @@ const imports = [
 })
 
 export class AppComponent {
-  title     = '01-Essentials';
-  users     = signal<User[]>(USERS);
-  tasks     = signal<Task[]>(TASKS);
-  isOpen    = signal(false); // modal open state
+      title = '01-Essentials';
+      users = signal<User[]>(USERS);
+      tasks = signal<Task[]>(TASKS);
+     isOpen = signal(false); // modal open state
   isClosing = signal(false); // tracks [Modal] closing (animation) state
-  user      = signal<User | null>(null);
+       user = signal<User | null>(null);
 
   onSelectUser(user: User) {
     this.user.set(user); // emitted values from child component
@@ -40,6 +40,10 @@ export class AppComponent {
   onCompleteTask(task: Task) {
     const update = this.tasks().filter(({ id }) => id !== task.id); // remove completed tasks
     this.tasks.set(update);
+  }
+
+  onNewTask(task: Task) {
+    this.tasks.update(prev => [task, ...prev]);
   }
 
   onToggleModal(shouldOpen: boolean) {

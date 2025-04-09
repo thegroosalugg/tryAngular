@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { User } from 'models/User';
 
 @Component({
@@ -9,12 +9,12 @@ import { User } from 'models/User';
 })
 
 export class UserComponent {
-  users  = input.required<User[]>();
-  select = output<User>();
-  isActive: User | null = null;
+     users = input.required<User[]>();
+    select = output<User>();
+  isActive = signal<User | null>(null);
 
   selectUser(user: User) { // user() when using signals. Remove () when using @decorators
-    this.isActive = user;  // Set the selected user as active in local state
+    this.isActive.set(user);  // Set the selected user as active in local state
     this.select.emit(user); // emit event to parent component
   }
 }

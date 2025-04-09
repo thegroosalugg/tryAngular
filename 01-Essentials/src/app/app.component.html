@@ -1,17 +1,25 @@
-<app-modal
-      [isOpen]="isOpen()"
-   [isClosing]="isClosing()"
-   (toggleOff)="onToggleModal($event)"
->
-  <app-task-form (toggleOff)="onToggleModal($event)"></app-task-form>
-</app-modal>
+<!-- @let allows you to save a computed() value and safely reuse it on runtime -->
+@let hasUser = user();
+@if (hasUser) {
+  <app-modal
+       [isOpen]="isOpen()"
+    [isClosing]="isClosing()"
+    (toggleOff)="onToggleModal($event)"
+  >
+    <app-task-form
+           [user]="hasUser"
+          [tasks]="tasks()"
+      (toggleOff)="onToggleModal($event)"
+        (newTask)="onNewTask($event)"
+    ></app-task-form>
+  </app-modal>
+}
 <app-header></app-header>
 <main>
   <app-user [users]="users()" (select)="onSelectUser($event)"></app-user>
-  <!-- Signals cannot infer Type safery, so <app-tasks> does not know user is not null -->
-  @if (user()) {
+  @if (hasUser) {
     <app-tasks
-          [user]="user()!"
+          [user]="hasUser"
          [tasks]="tasks()"
       (toggleOn)="onToggleModal($event)"
       (complete)="onCompleteTask($event)"
