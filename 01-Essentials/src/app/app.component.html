@@ -1,17 +1,18 @@
 <app-modal
-      [isOpen]="isOpen"
-   [isClosing]="isClosing"
+      [isOpen]="isOpen()"
+   [isClosing]="isClosing()"
    (toggleOff)="onToggleModal($event)"
 >
   <app-task-form (toggleOff)="onToggleModal($event)"></app-task-form>
 </app-modal>
 <app-header></app-header>
 <main>
-  <app-user [users]="users" (select)="onSelectUser($event)"></app-user>
-  @if (user) {
+  <app-user [users]="users()" (select)="onSelectUser($event)"></app-user>
+  <!-- Signals cannot infer Type safery, so <app-tasks> does not know user is not null -->
+  @if (user()) {
     <app-tasks
-          [user]="user"
-         [tasks]="tasks"
+          [user]="user()!"
+         [tasks]="tasks()"
       (toggleOn)="onToggleModal($event)"
       (complete)="onCompleteTask($event)"
     ></app-tasks>

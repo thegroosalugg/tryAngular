@@ -3,10 +3,10 @@ import { Component, signal } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { TasksComponent } from './tasks/tasks.component';
-import { User } from './models/User';
-import { Task } from './models/Task';
-import { USERS } from '../data/users';
-import { TASKS } from '../data/tasks';
+import { User } from 'models/User';
+import { Task } from 'models/Task';
+import { USERS } from 'data/users';
+import { TASKS } from 'data/tasks';
 import { ModalComponent } from './modal/modal.component';
 import { TaskFormComponent } from './tasks/task-form/task-form.component';
 
@@ -27,29 +27,30 @@ const imports = [
 
 export class AppComponent {
   title     = '01-Essentials';
-  users     = USERS;
-  tasks     = TASKS;
-  isOpen    = false; // modal open state
-  isClosing = false; // tracks [Modal] closing (animation) state
-  user: User | null = null;
+  users     = signal<User[]>(USERS);
+  tasks     = signal<Task[]>(TASKS);
+  isOpen    = signal(false); // modal open state
+  isClosing = signal(false); // tracks [Modal] closing (animation) state
+  user      = signal<User | null>(null);
 
   onSelectUser(user: User) {
-    this.user = user; // emitted values from child component
+    this.user.set(user); // emitted values from child component
   }
 
   onCompleteTask(task: Task) {
-    this.tasks = this.tasks.filter(({ id }) => id !== task.id);
+    const update = this.tasks().filter(({ id }) => id !== task.id); // remove completed tasks
+    this.tasks.set(update);
   }
 
   onToggleModal(shouldOpen: boolean) {
     if (shouldOpen) {
-      this.isOpen = true;
+      this.isOpen.set(true);
     } else {
-      this.isClosing = true; // start animation
+      this.isClosing.set(true); // start animation
       // Wait for animation to complete before emitting close event
       setTimeout(() => {
-        this.isClosing = false; // end animation
-        this.isOpen    = false; // close modal
+        this.isClosing.set(false); // end animation
+        this.isOpen.set(false); // close modal
       }, 500); // matches animation duration
     }
   }
