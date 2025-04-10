@@ -2,8 +2,8 @@
 @let hasUser = user();
 @if (hasUser) {
   <app-modal
-       [isOpen]="isOpen()"
-    [isClosing]="isClosing()"
+       [isOpen]="modal.isOpen()"
+    [isClosing]="modal.isClosing()"
     (toggleOff)="onToggleModal($event)"
   >
     <app-task-form

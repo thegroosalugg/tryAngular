@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
@@ -9,6 +9,7 @@ import { USERS } from 'data/users';
 import { TASKS } from 'data/tasks';
 import { ModalComponent } from './modal/modal.component';
 import { TaskFormComponent } from './tasks/task-form/task-form.component';
+import { ModalService } from './modal/modal.service';
 
 const imports = [
   HeaderComponent,
@@ -26,12 +27,16 @@ const imports = [
 })
 
 export class AppComponent {
-      title = '01-Essentials';
-      users = signal<User[]>(USERS);
-      tasks = signal<Task[]>(TASKS);
-     isOpen = signal(false); // modal open state
-  isClosing = signal(false); // tracks [Modal] closing (animation) state
-       user = signal<User | null>(null);
+  title = '01-Essentials';
+  users = signal<User[]>(USERS);
+  tasks = signal<Task[]>(TASKS);
+   user = signal<User | null>(null);
+
+  // by adding public/private to a constructor, we can shorthand the initialization
+  // of the class properties. This is a TypeScript feature. No need for this.modal = modal;
+  constructor(public modal: ModalService) {}
+  // inject(class) is an alternative to the constructor. It does the same thing
+  // public modal = inject(ModalService); // inject the modal service
 
   onSelectUser(user: User) {
     this.user.set(user); // emitted values from child component
@@ -43,19 +48,10 @@ export class AppComponent {
   }
 
   onNewTask(task: Task) {
-    this.tasks.update(prev => [task, ...prev]);
+    this.tasks.update((prev) => [task, ...prev]);
   }
 
-  onToggleModal(shouldOpen: boolean) {
-    if (shouldOpen) {
-      this.isOpen.set(true);
-    } else {
-      this.isClosing.set(true); // start animation
-      // Wait for animation to complete before emitting close event
-      setTimeout(() => {
-        this.isClosing.set(false); // end animation
-        this.isOpen.set(false); // close modal
-      }, 500); // matches animation duration
-    }
+  onToggleModal(toggle: boolean) {
+    this.modal.toggleModal(toggle);
   }
 }
