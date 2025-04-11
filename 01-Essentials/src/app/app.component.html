@@ -1,15 +1,15 @@
 <!-- @let allows you to save a computed() value and safely reuse it on runtime -->
-@let hasUser = user();
-@if (hasUser) {
+@let activeUser = users.active();
+@if (activeUser) {
   <app-modal>
-    <app-task-form [user]="hasUser"></app-task-form>
+    <app-task-form [user]="activeUser"></app-task-form>
   </app-modal>
 }
 <app-header></app-header>
 <main>
-  <app-user [users]="users()" (select)="onSelectUser($event)"></app-user>
-  @if (hasUser) {
-    <app-tasks [user]="hasUser"></app-tasks>
+  <app-user></app-user>
+  @if (activeUser) {
+    <app-tasks [user]="activeUser"></app-tasks>
   } @else {
     <p id="fallback">Click a button!</p>
   }

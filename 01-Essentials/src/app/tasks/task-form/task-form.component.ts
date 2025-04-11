@@ -16,7 +16,7 @@ export class TaskFormComponent {
     title = signal('');
   summary = signal('');
   dueDate = signal('');
-     user = input.required<User>();
+     user = input.required<User>(); // no usersService avoids redundant internal null checks
 
   constructor(private modal: ModalService, private tasks: TasksService) {}
 
@@ -40,7 +40,7 @@ export class TaskFormComponent {
     });
 
     this.clearForm();
-    this.tasks.add(task); // only components that create the signal can update it
-    this.closeModal(); // close modal
+    this.tasks.add(task);
+    this.closeModal();
   }
 }

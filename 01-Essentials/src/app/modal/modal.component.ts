@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalService } from './modal.service';
 
 @Component({

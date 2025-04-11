@@ -13,7 +13,7 @@ import { TasksService } from './tasks.service';
 })
 
 export class TasksComponent {
-  user = input.required<User>(); // receive props (Readonly)
+  user = input.required<User>(); // no usersService avoids redundant internal null checks
 
   constructor(private modal: ModalService, private tasks: TasksService) {}
 
