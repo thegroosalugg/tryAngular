@@ -2,22 +2,14 @@
 @let hasUser = user();
 @if (hasUser) {
   <app-modal>
-    <app-task-form
-           [user]="hasUser"
-          [tasks]="tasks()"
-        (newTask)="onNewTask($event)"
-    ></app-task-form>
+    <app-task-form [user]="hasUser"></app-task-form>
   </app-modal>
 }
 <app-header></app-header>
 <main>
   <app-user [users]="users()" (select)="onSelectUser($event)"></app-user>
   @if (hasUser) {
-    <app-tasks
-          [user]="hasUser"
-         [tasks]="tasks()"
-      (complete)="onCompleteTask($event)"
-    ></app-tasks>
+    <app-tasks [user]="hasUser"></app-tasks>
   } @else {
     <p id="fallback">Click a button!</p>
   }

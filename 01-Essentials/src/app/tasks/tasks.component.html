@@ -12,7 +12,7 @@
           <time>{{ task.dueDate | date: 'fullDate' }}</time>
           <p>{{ task.summary }}</p>
           <div class="actions">
-            <button (click)="emitCompleted(task)">Complete</button>
+            <button (click)="markCompleted(task)">Complete</button>
           </div>
         </li>
       }

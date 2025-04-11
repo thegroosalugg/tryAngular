@@ -1,5 +1,6 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TasksService } from '../tasks.service';
 import { ModalService } from 'app/modal/modal.service';
 import { Task } from 'models/Task';
 import { User } from 'models/User';
@@ -12,14 +13,12 @@ import { User } from 'models/User';
 })
 
 export class TaskFormComponent {
-      title = signal('');
-    summary = signal('');
-    dueDate = signal('');
-       user = input.required<User>();
-      tasks = input.required<Task[]>();
-    newTask = output<Task>();
+    title = signal('');
+  summary = signal('');
+  dueDate = signal('');
+     user = input.required<User>();
 
-  constructor(private modal: ModalService) {}
+  constructor(private modal: ModalService, private tasks: TasksService) {}
 
   private clearForm() {
     this.title.set('');
@@ -41,7 +40,7 @@ export class TaskFormComponent {
     });
 
     this.clearForm();
-    this.newTask.emit(task); // only components that create the signal can update it
+    this.tasks.add(task); // only components that create the signal can update it
     this.closeModal(); // close modal
   }
 }
