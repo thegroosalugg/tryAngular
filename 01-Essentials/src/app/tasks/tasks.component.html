@@ -1,7 +1,7 @@
 <section id="tasks">
   <header>
     <h2>{{ user().name }}'s Tasks</h2>
-    <button (click)="emitToggleOn()">Add Task</button>
+    <button (click)="openModal()">Add Task</button>
   </header>
   @if (userTasks().length > 0) {
     <ul>

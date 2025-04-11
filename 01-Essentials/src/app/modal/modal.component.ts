@@ -1,4 +1,5 @@
 import { Component, input, output, signal } from '@angular/core';
+import { ModalService } from './modal.service';
 
 @Component({
      selector: 'app-modal',
@@ -8,12 +9,9 @@ import { Component, input, output, signal } from '@angular/core';
 })
 
 export class ModalComponent {
-     isOpen = input.required<boolean>(); // set by parent
-  isClosing = input.required<boolean>(); // tracks closing animation state
-  toggleOff = output<boolean>();         // signal to parent to close the modal
-
-  emitToggleOff() {
-    console.log('Modal: close modal');
-    this.toggleOff.emit(false);
-  }
+  // adding public/private to a constructor shorthands class props initialization
+  // No need for this.modal = modal;
+  constructor(public modal: ModalService) {}
+  // inject(class) is an alternative to the constructor. It does the same thing
+  // public modal = inject(ModalService);
 }

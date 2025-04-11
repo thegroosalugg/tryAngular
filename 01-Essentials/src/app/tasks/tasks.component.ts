@@ -2,6 +2,7 @@ import { Component, computed, input, output } from '@angular/core';
 import { User } from 'models/User';
 import { Task } from 'models/Task';
 import { DatePipe } from '@angular/common';
+import { ModalService } from 'app/modal/modal.service';
 @Component({
      selector: 'app-tasks',
       imports: [DatePipe],
@@ -13,7 +14,8 @@ export class TasksComponent {
       user = input.required<User>(); // receive props (Readonly)
      tasks = input.required<Task[]>();
   complete = output<Task>(); // emit event to parent.
-  toggleOn = output<boolean>(); // emit [Modal] event to parent.
+
+  constructor(private modal: ModalService) {}
 
   userTasks = computed(() =>
     this.tasks().filter((task) => task.userId === this.user().id)
@@ -23,8 +25,7 @@ export class TasksComponent {
     this.complete.emit(task);
   }
 
-  emitToggleOn() {
-    console.log('Tasks: open modal');
-    this.toggleOn.emit(true);
+  openModal() {
+    this.modal.toggle(true);
   }
 }

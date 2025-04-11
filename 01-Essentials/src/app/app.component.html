@@ -1,15 +1,10 @@
 <!-- @let allows you to save a computed() value and safely reuse it on runtime -->
 @let hasUser = user();
 @if (hasUser) {
-  <app-modal
-       [isOpen]="modal.isOpen()"
-    [isClosing]="modal.isClosing()"
-    (toggleOff)="onToggleModal($event)"
-  >
+  <app-modal>
     <app-task-form
            [user]="hasUser"
           [tasks]="tasks()"
-      (toggleOff)="onToggleModal($event)"
         (newTask)="onNewTask($event)"
     ></app-task-form>
   </app-modal>
@@ -21,7 +16,6 @@
     <app-tasks
           [user]="hasUser"
          [tasks]="tasks()"
-      (toggleOn)="onToggleModal($event)"
       (complete)="onCompleteTask($event)"
     ></app-tasks>
   } @else {

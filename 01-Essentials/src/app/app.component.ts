@@ -32,12 +32,6 @@ export class AppComponent {
   tasks = signal<Task[]>(TASKS);
    user = signal<User | null>(null);
 
-  // by adding public/private to a constructor, we can shorthand the initialization
-  // of the class properties. This is a TypeScript feature. No need for this.modal = modal;
-  constructor(public modal: ModalService) {}
-  // inject(class) is an alternative to the constructor. It does the same thing
-  // public modal = inject(ModalService); // inject the modal service
-
   onSelectUser(user: User) {
     this.user.set(user); // emitted values from child component
   }
@@ -49,9 +43,5 @@ export class AppComponent {
 
   onNewTask(task: Task) {
     this.tasks.update((prev) => [task, ...prev]);
-  }
-
-  onToggleModal(toggle: boolean) {
-    this.modal.toggleModal(toggle);
   }
 }

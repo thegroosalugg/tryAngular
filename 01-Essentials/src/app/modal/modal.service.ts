@@ -7,7 +7,7 @@ export class ModalService {
      isOpen = signal(false); // modal open state
   isClosing = signal(false); // tracks <Modal/> closing (animation) state
 
-  toggleModal(shouldOpen: boolean) {
+  toggle(shouldOpen: boolean) {
     if (shouldOpen) {
       this.isOpen.set(true);
     } else {

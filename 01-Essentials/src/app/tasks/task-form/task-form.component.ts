@@ -1,5 +1,6 @@
 import { Component, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ModalService } from 'app/modal/modal.service';
 import { Task } from 'models/Task';
 import { User } from 'models/User';
 
@@ -16,8 +17,9 @@ export class TaskFormComponent {
     dueDate = signal('');
        user = input.required<User>();
       tasks = input.required<Task[]>();
-  toggleOff = output<boolean>();
     newTask = output<Task>();
+
+  constructor(private modal: ModalService) {}
 
   private clearForm() {
     this.title.set('');
@@ -25,9 +27,8 @@ export class TaskFormComponent {
     this.dueDate.set('');
   }
 
-  emitToggleOff() {
-    console.log('Tasks-Form: close modal');
-    this.toggleOff.emit(false);
+  closeModal() {
+    this.modal.toggle(false);
   }
 
   onSubmit() {
@@ -41,6 +42,6 @@ export class TaskFormComponent {
 
     this.clearForm();
     this.newTask.emit(task); // only components that create the signal can update it
-    this.toggleOff.emit(false); // close modal
+    this.closeModal(); // close modal
   }
 }
