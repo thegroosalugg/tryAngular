@@ -8,13 +8,26 @@ import { Task } from 'models/Task';
 export class TasksService {
   private tasks = signal<Task[]>(TASKS);
 
+  constructor() {
+    const tasks = localStorage.getItem('tasks');
+    if (tasks) {
+      this.tasks.set(JSON.parse(tasks));
+    }
+  }
+
+  private save() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks()));
+  }
+
   add(task: Task) {
     this.tasks.update((prev) => [task, ...prev]);
+    this.save();
   }
 
   remove(task: Task) {
     const update = this.tasks().filter(({ id }) => id !== task.id); // remove completed tasks
     this.tasks.set(update);
+    this.save();
   }
 
   byUser(userId: string) {
