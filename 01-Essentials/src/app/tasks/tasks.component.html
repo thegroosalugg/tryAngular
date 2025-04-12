@@ -1,0 +1,23 @@
+<section id="tasks">
+  <header>
+    <h2>{{ user().name }}'s Tasks</h2>
+    <button (click)="openModal()">Add Task</button>
+  </header>
+  @if (userTasks().length > 0) {
+    <ul>
+      @for (task of userTasks(); track task.id) {
+        <li>
+          <h3>{{ task.title }}</h3>
+          <!-- | pipes | are output transformers. Need importing. Config: optional -->
+          <time>{{ task.dueDate | date: 'fullDate' }}</time>
+          <p>{{ task.summary }}</p>
+          <div class="actions">
+            <button (click)="markCompleted(task)">Complete</button>
+          </div>
+        </li>
+      }
+    </ul>
+  } @else {
+    <div>{{ userTasks().length }} tasks</div>
+  }
+</section>
