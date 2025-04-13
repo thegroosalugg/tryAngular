@@ -1,5 +1,4 @@
 import { Component, input, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { TasksService } from '../tasks.service';
 import { ModalService } from 'app/modal/modal.service';
 import { Task } from 'models/Task';
@@ -7,7 +6,7 @@ import { User } from 'models/User';
 
 @Component({
      selector: 'app-task-form',
-      imports: [FormsModule],
+   standalone: false,
   templateUrl: './task-form.component.html',
      styleUrl: './task-form.component.scss'
 })

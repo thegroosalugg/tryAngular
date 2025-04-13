@@ -8,7 +8,7 @@
       @for (task of userTasks(); track task.id) {
         <li>
           <h3>{{ task.title }}</h3>
-          <!-- | pipes | are output transformers. Need importing. Config: optional -->
+          <!-- Common Modules are automatically included in NgModules approach -->
           <time>{{ task.dueDate | date: 'fullDate' }}</time>
           <p>{{ task.summary }}</p>
           <div class="actions">

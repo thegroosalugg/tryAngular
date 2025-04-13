@@ -1,13 +1,12 @@
 import { Component, computed, input } from '@angular/core';
 import { User } from 'models/User';
 import { Task } from 'models/Task';
-import { DatePipe } from '@angular/common';
 import { ModalService } from 'app/modal/modal.service';
 import { TasksService } from './tasks.service';
 
 @Component({
      selector: 'app-tasks',
-      imports: [DatePipe],
+   standalone: false,
   templateUrl: './tasks.component.html',
      styleUrl: './tasks.component.scss',
 })
