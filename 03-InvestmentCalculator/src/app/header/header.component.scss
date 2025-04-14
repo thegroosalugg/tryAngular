@@ -1,15 +1,17 @@
 header {
   text-align: center;
-  margin: 3rem auto;
+  margin: 0 auto;
+  padding: 1rem;
 
   img {
-    width: 5rem;
-    height: 5rem;
+    width: 6rem;
+    height: 6rem;
     object-fit: contain;
     background-color: transparent;
   }
 
   h1 {
     font-size: 1.5rem;
+    margin: 0;
   }
 }
