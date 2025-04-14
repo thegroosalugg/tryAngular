@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { InputComponent } from './input/input.component';
 import { calculateInvestmentResults } from 'util/investment-results';
 
 @Component({
      selector: 'app-form',
-      imports: [FormsModule],
+      imports: [FormsModule, InputComponent],
   templateUrl: './form.component.html',
      styleUrl: './form.component.scss',
 })

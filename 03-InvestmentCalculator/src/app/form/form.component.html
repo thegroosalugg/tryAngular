@@ -1,50 +1,12 @@
-@let initialInvestmentId = 'initial-investment';
-@let annualInvestmentId  = 'annual-investment';
-@let expectedReturnId    = 'expected-return';
-@let durationId          = 'duration';
-
 <form (ngSubmit)="onSubmit()">
   <section class="input-group">
-    <p>
-      <label [for]="initialInvestmentId">Initial Investment</label>
-      <input
-               type="number"
-               [id]="initialInvestmentId"
-             [name]="initialInvestmentId"
-        [(ngModel)]="initialInvestment"
-      />
-    </p>
-    <p>
-      <label [for]="annualInvestmentId">Annual Investment</label>
-      <input
-               type="number"
-               [id]="annualInvestmentId"
-             [name]="annualInvestmentId"
-        [(ngModel)]="annualInvestment"
-      />
-    </p>
+    <app-input id="initial-investment" [(bindVal)]="initialInvestment"></app-input>
+    <app-input id="annual-investment"  [(bindVal)]="annualInvestment"></app-input>
   </section>
-
   <section class="input-group">
-    <p>
-      <label [for]="expectedReturnId">Expected Return</label>
-      <input
-               type="number"
-               [id]="expectedReturnId"
-             [name]="expectedReturnId"
-        [(ngModel)]="expectedReturn"
-      />
-    </p>
-    <p>
-      <label [for]="durationId">Duration</label>
-      <input
-               type="number"
-               [id]="durationId"
-             [name]="durationId"
-        [(ngModel)]="duration"
-      />
-    </p>
+    <!-- [(2-way bindind syntax)] required to pass signal to ngModel -->
+    <app-input id="expected-return"    [(bindVal)]="expectedReturn"></app-input>
+    <app-input id="duration"           [(bindVal)]="duration"></app-input>
   </section>
-
   <button type="submit">Calculate</button>
 </form>

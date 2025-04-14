@@ -1,3 +1,5 @@
+const roundTwo = (n: number) => +(n.toFixed(2));
+
 export function calculateInvestmentResults({
   initialInvestment,
            duration,
@@ -13,10 +15,15 @@ export function calculateInvestmentResults({
   let valueEndOfYear = initialInvestment;
 
   for (let i = 0; i < duration; i++) {
-    const          year = i + 1;
-    const      interest = valueEndOfYear * (expectedReturn / 100);
-        valueEndOfYear += interest + annualInvestment;
-    const totalInterest = valueEndOfYear - annualInvestment * year - initialInvestment;
+    const year          = i + 1;
+    const interest      = roundTwo(valueEndOfYear * (expectedReturn / 100));
+    valueEndOfYear      = roundTwo(valueEndOfYear + interest + annualInvestment);
+    const totalInterest = roundTwo(
+      valueEndOfYear - annualInvestment * year - initialInvestment
+    );
+    const totalAmountInvested = roundTwo(
+      initialInvestment + annualInvestment * year
+    );
 
     annualData.push({
                      year,
@@ -24,7 +31,7 @@ export function calculateInvestmentResults({
            valueEndOfYear,
          annualInvestment,
             totalInterest,
-      totalAmountInvested: initialInvestment + annualInvestment * year,
+      totalAmountInvested,
     });
   }
 

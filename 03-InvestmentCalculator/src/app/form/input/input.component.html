@@ -1,0 +1,10 @@
+@let id = this.id();
+<p>
+  <label [for]="id">{{ this.id().replace('-', ' ') }}</label>
+  <input
+           type="number"
+           [id]="id"
+         [name]="id"
+    [(ngModel)]="bindVal"
+  />
+</p>
