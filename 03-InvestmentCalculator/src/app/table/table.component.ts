@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Investment } from 'util/investment-results';
 
 @Component({
      selector: 'app-table',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
      styleUrl: './table.component.scss'
 })
 export class TableComponent {
-
+  tData = input.required<Investment[]>();
 }

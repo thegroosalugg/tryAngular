@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputComponent } from './input/input.component';
-import { calculateInvestmentResults } from 'util/investment-results';
+import { calculateInvestmentResults, Investment } from 'util/investment-results';
 
 @Component({
      selector: 'app-form',
@@ -13,8 +13,9 @@ import { calculateInvestmentResults } from 'util/investment-results';
 export class FormComponent {
   initialInvestment = signal(0);
   annualInvestment  = signal(0);
-  expectedReturn    = signal(0);
-  duration          = signal(0);
+  expectedReturn    = signal(5);
+  duration          = signal(10);
+  formSubmit        = output<Investment[]>();
 
   onSubmit() {
     const results = calculateInvestmentResults({
@@ -23,6 +24,6 @@ export class FormComponent {
          expectedReturn: this.expectedReturn(),
                duration: this.duration(),
     });
-    console.log(results);
+    this.formSubmit.emit(results);
   }
 }

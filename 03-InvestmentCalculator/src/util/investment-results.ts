@@ -1,5 +1,13 @@
 const roundTwo = (n: number) => +(n.toFixed(2));
 
+export type Investment = {
+                 year: number;
+             interest: number;
+       valueEndOfYear: number;
+        totalInterest: number;
+  totalAmountInvested: number;
+};
+
 export function calculateInvestmentResults({
   initialInvestment,
            duration,
@@ -10,7 +18,7 @@ export function calculateInvestmentResults({
            duration: number;
      expectedReturn: number;
    annualInvestment: number;
-}) {
+}): Investment[] {
   const annualData = [];
   let valueEndOfYear = initialInvestment;
 
@@ -29,7 +37,6 @@ export function calculateInvestmentResults({
                      year,
                  interest,
            valueEndOfYear,
-         annualInvestment,
             totalInterest,
       totalAmountInvested,
     });
