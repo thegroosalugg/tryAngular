@@ -1,4 +1,4 @@
-function calculateInvestmentResults({
+export function calculateInvestmentResults({
   initialInvestment,
            duration,
      expectedReturn,
