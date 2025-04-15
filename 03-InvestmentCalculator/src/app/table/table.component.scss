@@ -1,3 +1,9 @@
+// angular's hidden wrapper to fix table's overflow issue
+:host {
+  display: block;
+  overflow-x: auto;
+}
+
 table {
   max-width: 50rem;
   margin: 0 auto;
