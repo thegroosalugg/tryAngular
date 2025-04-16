@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()">
+  <section class="input-group">
+    <app-input id="initial-investment" [(bindVal)]="initialInvestment"></app-input>
+    <app-input id="annual-investment"  [(bindVal)]="annualInvestment"></app-input>
+  </section>
+  <section class="input-group">
+    <!-- [(2-way bindind syntax)] required to pass signal to ngModel -->
+    <app-input id="expected-return"    [(bindVal)]="expectedReturn"></app-input>
+    <app-input id="duration"           [(bindVal)]="duration"></app-input>
+  </section>
+  <button type="submit">Calculate</button>
+</form>

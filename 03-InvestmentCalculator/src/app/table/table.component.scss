@@ -1,0 +1,26 @@
+// angular's hidden wrapper to fix table's overflow issue
+:host {
+  display: block;
+  overflow-x: auto;
+}
+
+table {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 1rem;
+  padding-top: 0;
+  table-layout: fixed;
+  border-spacing: 1rem;
+  text-align: right;
+
+  thead {
+    font-size: 0.7rem;
+    color: #83e6c0;
+  }
+
+  tbody {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 0.85rem;
+    color: #c2e9e0;
+  }
+}
