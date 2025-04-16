@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  trafficData = [
+  trafficData = signal([
     { id: 'd1',  value: 433 },
     { id: 'd2',  value: 260 },
     { id: 'd3',  value: 290 },
@@ -15,7 +15,9 @@ export class AppComponent {
     { id: 'd5',  value: 397 },
     { id: 'd6',  value: 488 },
     { id: 'd47', value: 589 },
-  ];
-  maxTraffic = Math.max(...this.trafficData.map((data) => data.value));
-  currentStatus = 'online';
+  ]);
+  maxTraffic = signal(
+    Math.max(...this.trafficData().map((data) => data.value))
+  );
+  isOnline = signal(true);
 }

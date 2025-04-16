@@ -34,15 +34,12 @@
           <h2>Server Status</h2>
         </header>
         <div>
-          @if (currentStatus === 'online') {
+          @if (isOnline()) {
             <p>Servers are online</p>
             <p>All systems are operational.</p>
-          } @else if (currentStatus === 'offline') {
+          } @else {
             <p>Servers are offline</p>
             <p>Functionality should be restored soon.</p>
-          } @else {
-            <p>Server status is unknown</p>
-            <p>Fetching server status failed.</p>
           }
         </div>
       </article>
@@ -58,8 +55,8 @@
           <p>Last 7 days</p>
 
           <div id="chart">
-            @for (dataPoint of trafficData; track dataPoint.id) {
-              <div [style.height]="(dataPoint.value / maxTraffic) * 100 + '%'"></div>
+            @for (dataPoint of trafficData(); track dataPoint.id) {
+              <div [style.height]="(dataPoint.value / maxTraffic()) * 100 + '%'"></div>
             }
           </div>
         </div>
