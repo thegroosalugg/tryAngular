@@ -2,5 +2,24 @@
   <!-- main children -->
   <ng-content />
 </span>
+@if (icon()) {
+  <span class="icon">{{ icon() }}</span>
+}
 <!-- selects 2nd set of children, identified with 'class="icon"' -->
-<ng-content select=".icon"></ng-content>
+<!-- <ng-content select=".icon"></ng-content> -->
+<!-- this approach isn't attractive, its just better to use input and define HTML within -->
+
+<!--
+  <span class="icon">
+    <ng-content select="icon">
+      // allows fallback if no span with icon is projected
+    </ng-content>
+  </span>
+-->
+<!-- this allows parent to use
+  <button custom>
+    content
+    <span ngProjectAs="icon"> → </span>
+  </button>
+and define any selector without . or #
+however this creates a span in a span, just only the top span has .icon class -->
