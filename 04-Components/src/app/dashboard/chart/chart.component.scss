@@ -1,4 +1,4 @@
-#chart {
+:host {
   height: 10rem;
   width: 15rem;
   display: flex;
@@ -16,7 +16,7 @@
 }
 
 @media (min-width: 768px) {
-  #chart {
+  :host {
     width: 20rem;
   }
 }

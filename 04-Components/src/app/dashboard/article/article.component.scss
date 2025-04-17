@@ -1,4 +1,4 @@
-article {
+:host {
   display: block;
   padding: 1rem;
   border: 1px solid #ccc;
@@ -29,7 +29,7 @@ article {
 }
 
 @media (min-width: 768px) {
-  article {
+  :host {
     padding: 2rem;
   }
 }

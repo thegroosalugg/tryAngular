@@ -1,4 +1,4 @@
-#status {
+:host {
   display: block;
   width: 15rem;
 
@@ -8,10 +8,10 @@
     margin: 0 0 0.5rem 0;
     font-size: 1.15rem;
     color: #b22084;
-  }
 
-  &.online p:first-of-type {
-    color: #6a3cb0;
+    &.online {
+      color: #6a3cb0;
+    }
   }
 
   p:last-of-type {

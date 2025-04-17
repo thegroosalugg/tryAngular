@@ -1,5 +1,3 @@
-<div id="chart">
-  @for (dataPoint of traffic.data(); track dataPoint.id) {
+@for (dataPoint of traffic.data(); track dataPoint.id) {
   <div [style.height]="(dataPoint.value / traffic.max()) * 100 + '%'"></div>
-  }
-</div>
+}

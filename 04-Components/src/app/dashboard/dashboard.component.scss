@@ -1,9 +1,5 @@
 :host {
-  display: block;
   overflow-x: scroll;
-}
-
-#dashboard {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,10 +7,6 @@
   gap: 1.5rem;
   max-width: 85rem;
   padding: 0.2rem 0.5rem;
-
-  > :last-child {
-    padding-right: 0.5rem; // creates scrollable gap on scroll-end
-  }
 }
 
 p {
@@ -24,7 +16,7 @@ p {
 }
 
 @media (min-width: 768px) {
-  #dashboard {
+  :host {
     flex-direction: row;
   }
 }

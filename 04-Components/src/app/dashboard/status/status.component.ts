@@ -8,5 +8,5 @@ import { TrafficService } from 'app/traffic.service';
      styleUrl: './status.component.scss',
 })
 export class StatusComponent {
-  constructor(public traffic: TrafficService) {}
+  constructor(public server: TrafficService) {}
 }

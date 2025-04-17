@@ -1,4 +1,4 @@
-header {
+:host {
   padding: 0.75rem 0.1rem;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@ header {
 }
 
 @media (min-width: 768px) {
-  header {
+  :host {
     font-size: 1.25rem;
     flex-direction: row;
     gap: 0;
