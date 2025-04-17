@@ -22,8 +22,10 @@ header {
     gap: 2rem;
     list-style: none;
     align-items: center;
-    padding: 0;
+    padding: 0.2rem;
     margin: 0;
+    max-width: 100%;
+    overflow-x: scroll;
 
     a {
       color: #3e3b3e;

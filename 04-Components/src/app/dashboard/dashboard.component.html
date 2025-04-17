@@ -1,14 +1,6 @@
 <div id="dashboard">
   <app-article type="server">
-    <div id="status">
-      @if (traffic.isOnline()) {
-      <p>Servers are online</p>
-      <p>All systems are operational.</p>
-      } @else {
-      <p>Servers are offline</p>
-      <p>Functionality should be restored soon.</p>
-      }
-    </div>
+    <app-status></app-status>
   </app-article>
 
   <app-article type="traffic">

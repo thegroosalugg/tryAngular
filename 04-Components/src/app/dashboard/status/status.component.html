@@ -1,0 +1,10 @@
+@let isOnline = traffic.isOnline();
+<div id="status" [class.online]="isOnline">
+  @if (isOnline) {
+    <p>Servers are online</p>
+    <p>All systems are operational.</p>
+  } @else {
+    <p>Servers are offline</p>
+    <p>Functionality should be restored soon.</p>
+  }
+</div>
