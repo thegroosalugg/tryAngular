@@ -13,6 +13,12 @@
   padding: 0.2rem;
 }
 
+p {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: #4f4b53;
+}
+
 @media (min-width: 768px) {
   #dashboard {
     flex-direction: row;
