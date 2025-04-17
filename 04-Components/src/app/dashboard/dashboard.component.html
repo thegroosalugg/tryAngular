@@ -1,49 +1,32 @@
-  <div id="dashboard">
-    <div class="dashboard-item">
-      <article>
-        <header>
-          <img src="status.png" alt="A signal symbol" />
-          <h2>Server Status</h2>
-        </header>
-        <div>
-          @if (traffic.isOnline()) {
-            <p>Servers are online</p>
-            <p>All systems are operational.</p>
-          } @else {
-            <p>Servers are offline</p>
-            <p>Functionality should be restored soon.</p>
-          }
-        </div>
-      </article>
+<div id="dashboard">
+  <app-article type="server">
+    <div id="status">
+      @if (traffic.isOnline()) {
+      <p>Servers are online</p>
+      <p>All systems are operational.</p>
+      } @else {
+      <p>Servers are offline</p>
+      <p>Functionality should be restored soon.</p>
+      }
     </div>
+  </app-article>
 
-    <div class="dashboard-item">
-      <article>
-        <header>
-          <img src="globe.png" alt="A globe" />
-          <h2>Traffic</h2>
-        </header>
-        <div id="traffic">
-          <p>Last 7 days</p>
-
-          <div id="chart">
-            @for (dataPoint of traffic.data(); track dataPoint.id) {
-              <div [style.height]="(dataPoint.value / traffic.max()) * 100 + '%'"></div>
-            }
-          </div>
-        </div>
-      </article>
+  <app-article type="traffic">
+    <div id="traffic">
+      <p>Last 7 days</p>
+      <div id="chart">
+        @for (dataPoint of traffic.data(); track dataPoint.id) {
+        <div
+          [style.height]="(dataPoint.value / traffic.max()) * 100 + '%'"
+        ></div>
+        }
+      </div>
     </div>
+  </app-article>
 
-    <div class="dashboard-item">
-      <article>
-        <header>
-          <img src="list.png" alt="A list of items" />
-          <h2>Support Tickets</h2>
-        </header>
-        <div id="status">
-          <p>Todo...</p>
-        </div>
-      </article>
+  <app-article type="support">
+    <div id="support">
+      <p>Todo...</p>
     </div>
-  </div>
+  </app-article>
+</div>

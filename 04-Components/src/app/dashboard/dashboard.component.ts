@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { TrafficService } from 'app/traffic.service';
+import { ArticleComponent } from './article/article.component';
 
 @Component({
      selector: 'app-dashboard',
-      imports: [],
+      imports: [ArticleComponent],
   templateUrl: './dashboard.component.html',
      styleUrl: './dashboard.component.scss',
 })
