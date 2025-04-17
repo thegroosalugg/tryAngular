@@ -1,0 +1,20 @@
+@let _label = label();
+@let  _rows = rows();
+<label [for]="_label">{{ _label }}</label>
+@if (_rows) {
+  <textarea [name]="_label" [id]="_label" [rows]="_rows"></textarea>
+} @else {
+  <input [name]="_label" [id]="_label" />
+}
+
+<!-- restricts ng-content to accept only input & textarea children -->
+<!-- <ng-content select="input, textarea"></ng-content> -->
+<!-- is then called like this: label is styled inside, input/textarea outside
+  <app-control label="Title">
+    <input name="title" id="title" />
+  </app-control>
+  <app-control label="Request">
+    <textarea name="request" id="request" rows="3"></textarea>
+  </app-control>
+however this approach is redundant
+as you have to repeat same value for label/for/id/name -->
