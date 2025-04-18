@@ -1,4 +1,8 @@
 <app-navigation />
 <main>
-  <app-dashboard />
+  @if (nav.isTesting()) {
+    <app-lifecycle />
+  } @else {
+    <app-dashboard />
+  }
 </main>

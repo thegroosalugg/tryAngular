@@ -1,0 +1,12 @@
+<div id="buttons">
+  <button (click)="onToggle()">Toggle!</button>
+  <button (click)="onRandom()">Roll!</button>
+</div>
+
+@if (isVisible()) {
+  <h2>Angular Component Lifecycle</h2>
+  <p>Demonstrate Angular component lifecycle Hooks.</p>
+  <p>
+    Your Lucky Number is: <strong>{{ number() }}</strong>
+  </p>
+}

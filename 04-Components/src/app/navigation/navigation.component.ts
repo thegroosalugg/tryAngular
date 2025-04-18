@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavService } from './navigation.service';
 import { ButtonComponent } from 'app/shared/button/button.component';
 
 @Component({
@@ -9,5 +10,5 @@ import { ButtonComponent } from 'app/shared/button/button.component';
 })
 
 export class NavigationComponent {
-
+  constructor(public nav: NavService) {}
 }
