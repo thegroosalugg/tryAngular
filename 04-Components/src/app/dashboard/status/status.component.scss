@@ -7,11 +7,10 @@
     animation: pulse 2s infinite;
     margin: 0 0 0.5rem 0;
     font-size: 1.15rem;
-    color: #b22084;
+    color: #4fb03c;
 
-    &.online {
-      color: #6a3cb0;
-    }
+    &.online  { color: #6a3cb0; }
+    &.offline { color: #b22a20; }
   }
 
   p:last-of-type {

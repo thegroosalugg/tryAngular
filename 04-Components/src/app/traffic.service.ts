@@ -11,6 +11,5 @@ export class TrafficService {
     { id: 'd6',  value: 488 },
     { id: 'd47', value: 589 },
   ]);
-       max = signal(Math.max(...this.data().map(({ value }) => value)));
-  isOnline = signal(true);
+  max = signal(Math.max(...this.data().map(({ value }) => value)));
 }

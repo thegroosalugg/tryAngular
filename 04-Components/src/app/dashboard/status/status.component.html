@@ -1,7 +1,9 @@
-@let isOnline = server.isOnline();
-@let   status = isOnline ? 'online' : 'offline';
-@let  message = isOnline
-  ? 'All systems are operational.'
-  : 'Functionality should be restored soon.';
-<p [class.online]="isOnline">Servers are {{ status }}</p>
+@let message = {
+      online: 'All systems are operational.',
+     offline: 'An error has occured.',
+  restarting: 'Please wait...'
+}[status()];
+<!-- class can be set to object of conditional values: -->
+<!-- <p [class]="{ status: true, online: status() === 'online' }" -->
+<p [class]="status()">Server is {{ status() }}</p>
 <p>{{ message }}</p>
