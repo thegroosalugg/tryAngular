@@ -10,6 +10,7 @@ import {
   AfterViewChecked,
   OnDestroy,
   SimpleChanges,
+  input,
 } from '@angular/core';
 
 const  log = (...data: any[]) => console.log(...data);
@@ -34,6 +35,7 @@ export class LifecycleComponent
 {
   isVisible = signal(false);
   number    = signal(rand());
+  text      = input.required();
 
   onToggle() {
     console.clear();

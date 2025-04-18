@@ -1,8 +1,9 @@
 <app-navigation />
 <main>
   @if (nav.isTesting()) {
-    <app-lifecycle />
+    <app-lifecycle text="Testing" />
   } @else {
     <app-dashboard />
   }
 </main>
+<app-footer />
