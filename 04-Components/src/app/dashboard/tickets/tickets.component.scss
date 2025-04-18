@@ -2,27 +2,106 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
 
-  ul {
-    list-style: none;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 15rem;
+  max-height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+li {
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: #59555f;
+  color: #ded8e6;
+
+  h3 {
     margin: 0;
-    padding: 0;
-    width: 15rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
 
-    li {
-      margin: 0.5rem 0;
+    div {
+      min-width: 0.9rem;
+      height: 0.9rem;
+      border-radius: 50%;
+      background-color: #51c788;
+      transition: 0.3s ease-in-out;
+
+      &.open {
+        background-color: #de62e9;
+      }
+    }
+
+    &:hover {
+      div {
+        background-color: #ffffff;
+      }
+
+      button span {
+        transform: translate(-5px);
+      }
+    }
+
+    button {
+      width: 100%;
+      min-width: 0; // ELLIPSIS: key prop for nested span to not push other elements
+      padding: 0;
+      padding-bottom: 0.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font: inherit;
+      background: none;
+      border: none;
+      color: #ded8e6;
+
+      span {
+        max-width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: 0.2s ease-in-out;
+      }
+
+      svg {
+        width: 1rem;
+      }
     }
   }
 
-  p {
+  > p {
+    text-align: center;
     margin: 0;
-    color: #4f4b53;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
   }
 
-  h2 {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #38343c;
+  > button {
+    background: none;
+    border: none;
+    width: 100%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ebebeb;
+    text-shadow: 1px 1px 2px #000;
+    transition: 0.5s ease-in-out;
+
+    &:hover {
+      color: #ec9fea;
+    }
   }
 }
 
