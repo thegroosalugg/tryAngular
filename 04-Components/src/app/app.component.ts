@@ -9,6 +9,7 @@ import { LifecycleComponent } from './lifecycle/lifecycle.component';
      selector: 'app-root',
       imports: [NavigationComponent, DashboardComponent, LifecycleComponent],
   templateUrl: './app.component.html',
+     styleUrl: './app.component.scss',
 })
 export class AppComponent {
   nav = inject(NavService); // alternative way of injecting services
