@@ -1,12 +1,14 @@
+<!-- #template vars capture elementRefs on native HTML elements
+and component instances when used on components -->
 <app-article type="server">
-  <app-status />
+  <app-status #dashItem />
 </app-article>
 
 <app-article type="traffic">
   <p>Last 7 days</p>
-  <app-chart />
+  <app-chart #dashItem />
 </app-article>
 
 <app-article type="support">
-  <app-tickets />
+  <app-tickets #dashItem />
 </app-article>

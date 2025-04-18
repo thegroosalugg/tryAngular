@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { AfterContentInit, Component, computed, ContentChild, contentChild, input } from '@angular/core';
 
 type Config = 'server' | 'traffic' | 'support';
 
@@ -27,7 +27,14 @@ const configMap = {
      styleUrl: './article.component.scss',
 })
 
-export class ArticleComponent {
-    type = input.required<Config>();
-  config = computed(() => configMap[this.type()]);
+export class ArticleComponent implements AfterContentInit {
+     type = input.required<Config>();
+   config = computed(() => configMap[this.type()]);
+  // contenChild(#templateVar) to get elements rendered with <ng-content />
+  content = contentChild.required('dashItem');
+  // @ContentChild('dashItem') content!: Component; // @Decorator approach
+
+  ngAfterContentInit() {
+    console.log('[ARTICLE]: contentChild', this.content());
+  }
 }

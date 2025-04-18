@@ -1,5 +1,6 @@
 import {
   Component,
+  input,
   signal,
   OnInit,
   OnChanges,
@@ -10,7 +11,6 @@ import {
   AfterViewChecked,
   OnDestroy,
   SimpleChanges,
-  input,
 } from '@angular/core';
 
 const  log = (...data: any[]) => console.log(...data);

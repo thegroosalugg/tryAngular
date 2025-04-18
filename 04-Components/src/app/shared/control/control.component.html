@@ -2,9 +2,22 @@
 @let  _rows = rows();
 <label [for]="_label">{{ _label }}</label>
 @if (_rows) {
-  <textarea [name]="_label" [id]="_label" [rows]="_rows"></textarea>
+  <!-- identical #template variables can be used on multiple components -->
+  <textarea
+     #input
+       [id]="_label"
+     [name]="_label"
+     [rows]="_rows"
+    (input)="onChange($event)"
+  ></textarea>
 } @else {
-  <input [name]="_label" [id]="_label" />
+  <!-- change tracked for logging only - not used (but can be) to pass form data up -->
+  <input
+     #input
+     [name]="_label"
+       [id]="_label"
+    (input)="onChange($event)"
+  />
 }
 
 <!-- restricts ng-content to accept only input & textarea children -->
