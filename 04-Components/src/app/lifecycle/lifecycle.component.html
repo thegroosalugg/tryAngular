@@ -4,9 +4,10 @@
 </div>
 
 @if (isVisible()) {
-  <h2>Angular Component Lifecycle</h2>
-  <p>Demonstrate Angular component lifecycle Hooks.</p>
-  <p>
-    Your Lucky Number is: <strong>{{ number() }}</strong>
-  </p>
+  <div id="lifecycle-components">
+    <app-status />
+    <p>
+      Your Lucky Number is: <strong>{{ number() }}</strong>
+    </p>
+  </div>
 }

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
 
 @Component({
      selector: 'app-status',
@@ -11,6 +11,22 @@ export class StatusComponent implements OnInit, OnDestroy {
   status   = signal<'online' | 'offline' | 'restarting'>('online');
   // interval = signal<ReturnType<typeof setInterval> | null>(null); // with ngOnDestroy()
   element  = inject(DestroyRef); // or inject with constructor()
+
+  constructor() {
+    // effects can be set up inside constructor - they subscribe to signal changes
+    effect((onCleanup) => {
+      console.log('[effect]: status', this.status());
+
+      const timer = setTimeout(() => {
+        console.log('[effect]: timer');
+      }, 1000);
+
+      onCleanup(() => { // clean up effects
+        clearTimeout(timer);
+        console.log('onCleanup', timer);
+      });
+    });
+  }
 
   // ngOnInit runs once after inputs initialised and has access to their values
   ngOnInit() { // better than constructor() {}
