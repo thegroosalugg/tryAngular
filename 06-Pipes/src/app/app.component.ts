@@ -1,5 +1,6 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
+import { TemperaturePipe } from './shared/pipes/temperature.pipe';
 // import { RouterOutlet } from '@angular/router';
 
 const historic = [25, 37, 19, -4, 28, 21, 19, 28, 33, 31, 9, 11, 5, -12, -5];
@@ -12,7 +13,7 @@ const current = {
 
 @Component({
      selector: 'app-root',
-      imports: [DatePipe, DecimalPipe],
+      imports: [DatePipe, DecimalPipe, TemperaturePipe],
   templateUrl: './app.component.html',
      styleUrl: './app.component.scss',
 })
