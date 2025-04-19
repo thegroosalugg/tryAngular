@@ -1,12 +1,15 @@
 import { Directive, ElementRef, inject, input } from '@angular/core';
+import { LogDirective } from './log.directive';
 // Directives enhance native HTML elements. They're like Components, apart they don't have a template
 // #THIS IS AN ATTRIBUTE DIRECTIVE: it enhances native elements with custom props
 @Directive({ // prepend directives with 'app' is convention
   selector: 'a[appLink]', // set attribute used on an HTML element to activate. <a> locks anchor
   host: {
     '(click)': 'confirm($event)' // customise host event listeners - set per Angular syntax
-  }
+  },
+  hostDirectives: [LogDirective] // adds additional directive to all appLinks
 })
+
 export class LinkDirective {
   // you can use alias to rename this input the same as selector to simplify its use
   query = input('myApp', { alias: 'appLink' }); // <a appLink='queryParam'>

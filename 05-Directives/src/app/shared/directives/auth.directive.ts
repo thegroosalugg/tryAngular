@@ -2,7 +2,7 @@ import { Directive, effect, input, TemplateRef, ViewContainerRef } from '@angula
 import { Permission } from 'app/auth/auth.model';
 import { AuthService } from 'app/auth/auth.service';
 
-// #THIS IS AN STRUCTURAL DIRECTIVE:
+// #THIS IS A STRUCTURAL DIRECTIVE:
 // allows conditional content rendering based on commonly reused conditions, such as auth
 @Directive({
   selector: '[appAuth]',
