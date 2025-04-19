@@ -1,13 +1,21 @@
 <div id="buttons">
-  <button (click)="onToggle()">Toggle!</button>
-  <button (click)="onRandom()">Roll!</button>
+  <button (click)="onToggle('test')">Testing</button>
+  <button (click)="onToggle('rect')">Rectangle!</button>
 </div>
 
-@if (isVisible()) {
+@if (component() === 'test') {
   <div id="lifecycle-components">
     <app-status />
+    <button (click)="onRandom()">Roll!</button>
     <p>
       Your Lucky Number is: <strong>{{ number() }}</strong>
     </p>
   </div>
+} @else if (component() === 'rect') {
+  <div id="inputs">
+    <app-control label="width"  type="number" [(bind)]="size().width" />
+    <app-control label="height" type="number" [(bind)]="size().height" />
+  </div>
+  <!-- custom 2 way binding - with signal & model - or @Input & @Output -->
+  <app-rect [(size)]="size" />
 }

@@ -13,10 +13,12 @@
 } @else {
   <!-- change tracked for logging only - not used (but can be) to pass form data up -->
   <input
-     #input
-     [name]="_label"
-       [id]="_label"
-    (input)="onChange($event)"
+         #input
+         [name]="_label"
+           [id]="_label"
+         [type]="type()"
+        (input)="onChange($event)"
+    [(ngModel)]="bind"
   />
 }
 

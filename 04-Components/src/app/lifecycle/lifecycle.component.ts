@@ -15,13 +15,15 @@ import {
   afterNextRender,
 } from '@angular/core';
 import { StatusComponent } from 'app/dashboard/status/status.component';
+import { RectComponent } from './rect/rect.component';
+import { ControlComponent } from 'app/shared/control/control.component';
 
 const  log = (...data: any[]) => console.log(...data);
 const rand = () => +(Math.random() * 100).toFixed();
 
 @Component({
      selector: 'app-lifecycle',
-      imports: [StatusComponent],
+      imports: [StatusComponent, RectComponent, ControlComponent],
   templateUrl: './lifecycle.component.html',
      styleUrl: './lifecycle.component.scss',
 })
@@ -36,13 +38,14 @@ export class LifecycleComponent
     AfterViewChecked,
     OnDestroy
 {
-  isVisible = signal(false);
+  component = signal<'test' | 'rect' | undefined>(undefined);
   number    = signal(rand());
   text      = input.required();
+  size      = signal({ height: 200, width: 200 });
 
-  onToggle() {
+  onToggle(path?: 'test' | 'rect') {
     console.clear();
-    this.isVisible.set(!this.isVisible());
+    this.component.update((prev) => path === prev ? undefined : path);
   }
 
   onRandom() {
