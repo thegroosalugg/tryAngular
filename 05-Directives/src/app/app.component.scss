@@ -11,3 +11,13 @@ main {
   flex: 1;
   padding: 1rem 10%;
 }
+
+p {
+  text-align: center;
+  padding: 1rem;
+  background: #7b4193;
+  color: #fff;
+
+  &.user  { background: #549341; }
+  &.admin { background: #935f41; }
+}

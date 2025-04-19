@@ -2,4 +2,12 @@
   <app-learning-resources />
   <hr />
   <app-auth />
+  <!-- how Structural Dirivitives appear under the hood -->
+  <ng-template appAuth="guest">
+    <p>Welcome Stranger</p>
+  </ng-template>
+  <!-- *shortHands ng-template.
+  Automatically applies 2-way binding => 'strings' must be in 'quotes' -->
+  <p *appAuth="'user'"  class="user">Greetings, John</p>
+  <p *appAuth="'admin'" class="admin">Captain</p>
 </main>

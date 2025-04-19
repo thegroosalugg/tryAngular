@@ -1,5 +1,6 @@
 import { Directive, ElementRef, inject, input } from '@angular/core';
 // Directives enhance native HTML elements. They're like Components, apart they don't have a template
+// #THIS IS AN ATTRIBUTE DIRECTIVE: it enhances native elements with custom props
 @Directive({ // prepend directives with 'app' is convention
   selector: 'a[appLink]', // set attribute used on an HTML element to activate. <a> locks anchor
   host: {
