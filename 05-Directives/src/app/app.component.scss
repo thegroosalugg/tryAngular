@@ -1,0 +1,23 @@
+// Main styles start here - app-host acts as body for flex inheritance
+:host {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse closest-side at center, #c0c0c0, #7f7f7f);
+}
+
+// pushes footers to bottom of the page
+main {
+  flex: 1;
+  padding: 1rem 10%;
+}
+
+p {
+  text-align: center;
+  padding: 1rem;
+  background: #7b4193;
+  color: #fff;
+
+  &.user  { background: #549341; }
+  &.admin { background: #935f41; }
+}
