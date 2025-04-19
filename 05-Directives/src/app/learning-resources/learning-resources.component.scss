@@ -1,3 +1,10 @@
+:host {
+  display: block;
+  background: radial-gradient(circle at bottom left, #c2c2c2, #eaeaea);
+  padding: 0.5rem;
+  padding-bottom: 0;
+}
+
 h2 {
   font-size: 1.5rem;
   font-weight: bold;
@@ -17,7 +24,7 @@ ul {
   li {
     a {
       color: rgb(207, 228, 245);
-      background-color: #264ec5;
+      background-color: #266bc5;
       padding: 0.25rem 0.5rem;
       border-radius: 4px;
       transition: all 0.3s ease;

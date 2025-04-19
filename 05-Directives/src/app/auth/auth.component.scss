@@ -1,5 +1,13 @@
+:host {
+  display: block;
+  background: radial-gradient(circle at bottom left, #c2c2c2, #eaeaea);
+  padding: 0.5rem;
+  padding-top: 0;
+}
+
+
 h2 {
-  margin: 0.2rem 0;
+  padding: 0.2rem 0;
 }
 
 form {
@@ -42,7 +50,7 @@ button {
   padding: 0.35rem 1.5rem;
   border-radius: 4px;
   border: none;
-  background-color: #264ec5;
+  background-color: #266bc5;
   color: white;
   transition: all 0.3s ease;
 
