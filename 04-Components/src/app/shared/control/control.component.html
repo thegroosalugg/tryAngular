@@ -1,0 +1,35 @@
+@let _label = label();
+@let  _rows = rows();
+<label [for]="_label">{{ _label }}</label>
+@if (_rows) {
+  <!-- identical #template variables can be used on multiple components -->
+  <textarea
+     #input
+       [id]="_label"
+     [name]="_label"
+     [rows]="_rows"
+    (input)="onChange($event)"
+  ></textarea>
+} @else {
+  <!-- change tracked for logging only - not used (but can be) to pass form data up -->
+  <input
+         #input
+         [name]="_label"
+           [id]="_label"
+         [type]="type()"
+        (input)="onChange($event)"
+    [(ngModel)]="bind"
+  />
+}
+
+<!-- restricts ng-content to accept only input & textarea children -->
+<!-- <ng-content select="input, textarea"></ng-content> -->
+<!-- is then called like this: label is styled inside, input/textarea outside
+  <app-control label="Title">
+    <input name="title" id="title" />
+  </app-control>
+  <app-control label="Request">
+    <textarea name="request" id="request" rows="3"></textarea>
+  </app-control>
+however this approach is redundant
+as you have to repeat same value for label/for/id/name -->

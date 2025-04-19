@@ -1,0 +1,22 @@
+:host {
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 85rem;
+  padding: 0.2rem 0.5rem;
+}
+
+p {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: #4f4b53;
+}
+
+@media (min-width: 768px) {
+  :host {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,28 @@
+:host {
+  display: inline-block;
+  padding: 0.65rem 1.35rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  background-color: #691ebe;
+  color: white;
+  border: none;
+
+  // ::nd-deep allows to define class styles inside, though typically they should be defined outside as a global style
+  // ::ng-deep .icon {
+  .icon {
+    display: inline-block;
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:hover {
+    background-color: #551b98;
+
+    // ::ng-deep .icon {
+    .icon {
+      transform: translateX(4px);
+    }
+  }
+}

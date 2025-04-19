@@ -1,0 +1,12 @@
+:host {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  justify-items: center;
+  padding: 2rem 1rem;
+  background-color: #261f3a;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}

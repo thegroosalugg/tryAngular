@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  max-width: 50rem;
+  padding: 1rem;
+  border: 2px solid #dad6dd;
+  background: #d6d6d6;
+  text-align: center;
+  border-radius: 4px;
+}
+
+#buttons {
+  overflow-x: scroll;
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  width: 100px;
+  padding: 0.25rem 0.5rem;
+  margin: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 2px solid #dad6dd;
+  background: #66428b;
+  color: #dad6dd;
+  border-radius: 4px;
+
+  &:hover {
+    background: #d0a7fa;
+    border-color: #d0a7fa;
+  }
+}
+
+#lifecycle-components {
+  padding: 0.5rem 1rem;
+  color: #212022;
+
+  > :first-child {
+    margin: auto;
+    width: 100%;
+  }
+}
+
+#inputs {
+  display: flex;
+  align-items: center;
+  text-align: start;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin: 0
+}
+
+strong {
+  color: #66428b;
+  font-size: 1.2rem;
+}

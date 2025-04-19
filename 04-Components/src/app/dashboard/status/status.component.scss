@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  width: 15rem;
+
+  p:first-of-type {
+    font-weight: bold;
+    animation: pulse 2s infinite;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.15rem;
+    color: #4fb03c;
+
+    &.online  { color: #6a3cb0; }
+    &.offline { color: #b22a20; }
+  }
+
+  p:last-of-type {
+    margin: 0;
+    color: #625e67;
+  }
+}
+
+@keyframes pulse {
+  0%   { opacity:   1; }
+  50%  { opacity: 0.5; }
+  100% { opacity:   1; }
+}

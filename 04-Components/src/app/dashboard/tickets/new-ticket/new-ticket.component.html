@@ -1,0 +1,8 @@
+<!-- use #template variables to store the <HTML element />
+(or component instance when used on <app-components />)
+you can add multiple #template variables on an element and pass them as args -->
+<form (ngSubmit)="onSubmit()" #form>
+  <app-control label="title" />
+  <app-control label="request" [rows]="3" />
+  <button custom icon=" ⌲ ">Submit</button>
+</form>
