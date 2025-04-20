@@ -1,0 +1,16 @@
+<article [class]="task().status">
+  <header>
+    <h3>{{ task().title }}</h3>
+    <p>{{  getStatus()  }}</p>
+  </header>
+  <p>{{ task().desc }}</p>
+  <form (ngSubmit)="tasks.updateStatus(task().id, status.value)">
+    <!-- select[value] selects option with value matching task.status -->
+    <select #status [value]="task().status">
+      <option value="open">             Open</option>
+      <option value="in_progress">In-Progress</option>
+      <option value="done">         Completed</option>
+    </select>
+    <button>Change Status</button>
+  </form>
+</article>
