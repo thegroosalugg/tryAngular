@@ -1,0 +1,38 @@
+<main>
+  <article class="temperatures">
+    <header>
+      <img src="temp-icon.png" alt="Thermometer icon" />
+      <div>
+        <h2>Current Temperature</h2>
+        <!-- DatePipe: configurable with various presets -->
+        <p>{{ currentDate() | date: 'medium'  }}</p>
+        <!-- DecimalPipe: MinIntegers.MinFloats-MaxFloats -->
+        <p>{{  4304.92374   | number: '0.2-2' }}</p>
+      </div>
+    </header>
+    @for (temp of tempsCurrent(); track $index) {
+      <p>
+        <span>{{ temp[0] }}</span>
+        <!-- separate pipe:args:with:colons -->
+        <span>{{ temp[1] | temperature:'f':'c' }}</span>
+      </p>
+    }
+  </article>
+
+  <article class="temperatures">
+    <header>
+      <img src="temp-icon.png" alt="Thermometer icon" />
+      <div>
+        <h2>Historic Temperatures</h2>
+        <p>Berlin</p>
+      </div>
+    </header>
+    <ul>
+      <!-- custop pipe: SortPipe: pipes can be used on arrays at the start of @for ops -->
+      @for (temperature of temperatures().historic | sort: 'reverse'; track $index) {
+        <!-- custom pipe: TemperaturePipe: input declares type, set output for conversion -->
+        <li (click)="onReset($index)">{{ temperature | temperature:'c':'f' }}</li>
+      }
+    </ul>
+  </article>
+</main>
