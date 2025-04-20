@@ -3,21 +3,20 @@ article {
   padding: 1rem;
   border-radius: 4px;
   border-left: 8px solid transparent;
-}
+  border-color: #3ceff8; // in-progress
+  background-color: #211f1a; // in-progress
 
-.status-open {
-  border-color: #f8d63c;
-  background-color: #2d2a22;
-}
+  &.open {
+    border-color: #f8d63c;
+    background-color: #2d2a22;
+    header p { background-color: #f8d63c; }
+  }
 
-.status-in-progress {
-  border-color: #3ceff8;
-  background-color: #211f1a;
-}
-
-.status-done {
-  border-color: #c484fc;
-  background-color: #39372e;
+  &.done {
+    border-color: #c484fc;
+    background-color: #39372e;
+    header p { background-color: #c484fc; }
+  }
 }
 
 header {
@@ -25,69 +24,59 @@ header {
   gap: 0.5rem;
   align-items: center;
   margin-bottom: 0.5rem;
-}
+  padding: 0.2rem;
+  overflow-x: scroll;
 
-h3 {
-  color: #efede4;
-  margin: 0;
-}
+  h3 {
+    color: #efede4;
+    margin: 0;
+  }
 
-header p {
-  margin: 0;
-  font-size: 0.75rem;
-  font-weight: bold;
-  padding: 0.15rem 0.25rem;
-  color: #282620;
-  border-radius: 4px;
-}
-
-.status-open header p {
-  background-color: #f8d63c;
-}
-
-.status-in-progress header p {
-  background-color: #3ceff8;
-}
-
-.status-done header p {
-  background-color: #c484fc;
+  p {
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.15rem 0.25rem;
+    border-radius: 4px;
+    color: #282620;
+    background-color: #3ceff8; // in-progress
+  }
 }
 
 p {
   color: #c3c0b9;
-  margin: 0;
 }
 
 form {
   text-align: right;
   display: flex;
   gap: 1rem;
-  justify-content: flex-end;
   align-items: center;
-}
+  overflow-x: scroll;
 
-select {
-  font: inherit;
-  padding: 0.15rem;
-  border: none;
-  background-color: #575754;
-  color: #fefefe;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-}
+  select {
+    font: inherit;
+    padding: 0.15rem;
+    margin-left: auto;
+    border: none;
+    background-color: #575754;
+    color: #fefefe;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+  }
 
-button {
-  font: inherit;
-  padding: 0.25rem 0.5rem;
-  border: none;
-  background-color: transparent;
-  color: #f2e090;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-size: 0.75rem;
-}
+  button {
+    font: inherit;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    background-color: transparent;
+    color: #f2e090;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.75rem;
 
-button:hover,
-button:active {
-  color: #f8d63c;
+    &:hover,
+    &:active {
+      color: #f8d63c;
+    }
+  }
 }

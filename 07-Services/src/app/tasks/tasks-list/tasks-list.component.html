@@ -1,7 +1,7 @@
 <header>
   <h2>My Tasks</h2>
   <p>
-    <select (change)="tasks.onChangeTasksFilter(filter.value)" #filter>
+    <select (change)="tasks.changeFilter(filter.value)" #filter>
       <option value="all">All</option>
       <option value="open">Open</option>
       <option value="in_progress">In-Progress</option>
@@ -11,9 +11,9 @@
 </header>
 
 <ul>
-  @for (task of tasks.tasks(); track task) {
+  @for (task of tasks.all(); track task.id) {
     <li>
-      <app-task-item />
+      <app-task-item [task]="task" />
     </li>
   } @empty {
     <p>No Tasks</p>

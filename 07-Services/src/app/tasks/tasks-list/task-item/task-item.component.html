@@ -1,27 +1,16 @@
-<article
-  [class]="{
-    'status-open': tasks.task().status === 'open',
-    'status-in-progress': tasks.task().status === 'in_progress',
-    'status-done': tasks.task().status === 'done'
-  }"
->
+<article [class]="task().status">
   <header>
-    <h3>{{ tasks.task().title }}</h3>
-    <p>{{ tasks.taskStatus() }}</p>
+    <h3>{{ task().title }}</h3>
+    <p>{{  getStatus()  }}</p>
   </header>
-  <p>{{ tasks.task().desc }}</p>
-  <form (ngSubmit)="tasks.onChangeTaskStatus(tasks.task().id, status.value)">
-    <select #status>
-      <option value="open" [selected]="tasks.task().status === 'open'">Open</option>
-      <option value="in_progress" [selected]="tasks.task().status === 'in_progress'">
-        In-Progress
-      </option>
-      <option value="done" [selected]="tasks.task().status === 'done'">
-        Completed
-      </option>
+  <p>{{ task().desc }}</p>
+  <form (ngSubmit)="tasks.updateStatus(task().id, status.value)">
+    <!-- select[value] selects option with value matching task.status -->
+    <select #status [value]="task().status">
+      <option value="open">             Open</option>
+      <option value="in_progress">In-Progress</option>
+      <option value="done">         Completed</option>
     </select>
-    <p>
-      <button>Change Status</button>
-    </p>
+    <button>Change Status</button>
   </form>
 </article>
