@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { Task, TaskStatus } from './task.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', // #INJECTOR *1 - the main way - service accessible at root
 })
 export class TasksService {
   tasks = signal<Task[]>([]);
@@ -22,12 +22,15 @@ export class TasksService {
     this.save();
   }
 
-  updateStatus(taskId: string, _status: string) {
-    const status = _status as TaskStatus;
+  isTaskStatus(value: string): value is TaskStatus {
+    return ['open', 'in_progress', 'done'].includes(value);
+  }
+
+  updateStatus(taskId: string, status: string) {
+    if (!this.isTaskStatus(status)) return;
+
     this.tasks.update((prev) =>
-      prev.map((task) =>
-        task.id === taskId ? { ...task, status } : task
-      )
+      prev.map((task) => (task.id === taskId ? { ...task, status } : task))
     );
     this.save();
   }
