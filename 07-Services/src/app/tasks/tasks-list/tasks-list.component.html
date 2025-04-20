@@ -1,17 +1,18 @@
 <header>
   <h2>My Tasks</h2>
   <p>
-    <select (change)="tasks.changeFilter(filter.value)" #filter>
-      <option value="all">All</option>
-      <option value="open">Open</option>
+    <select (change)="changeFilter(filter.value)" #filter>
+      <!-- empty string = no filter -->
+      <option value="">                   All</option>
+      <option value="open">              Open</option>
       <option value="in_progress">In-Progress</option>
-      <option value="done">Completed</option>
+      <option value="done">         Completed</option>
     </select>
   </p>
 </header>
 
 <ul>
-  @for (task of tasks.all(); track task.id) {
+  @for (task of filtered(); track task.id) {
     <li>
       <app-task-item [task]="task" />
     </li>
