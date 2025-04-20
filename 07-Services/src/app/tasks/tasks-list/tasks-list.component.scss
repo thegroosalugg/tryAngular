@@ -10,7 +10,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
 h2 {
@@ -34,7 +34,10 @@ ul {
   display: flex;
   gap: 1rem;
   flex-direction: column;
-  list-style: none;
-  margin: 0;
   padding: 0.5rem;
+
+  > p {
+    color: #fff;
+    text-align: center;
+  }
 }

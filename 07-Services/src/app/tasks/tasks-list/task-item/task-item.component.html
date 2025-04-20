@@ -1,22 +1,22 @@
 <article
   [class]="{
-    'status-open': task().status === 'OPEN',
-    'status-in-progress': task().status === 'IN_PROGRESS',
-    'status-done': task().status === 'DONE'
+    'status-open': tasks.task().status === 'open',
+    'status-in-progress': tasks.task().status === 'in_progress',
+    'status-done': tasks.task().status === 'done'
   }"
 >
   <header>
-    <h3>{{ task().title }}</h3>
-    <p>{{ taskStatus() }}</p>
+    <h3>{{ tasks.task().title }}</h3>
+    <p>{{ tasks.taskStatus() }}</p>
   </header>
-  <p>{{ task().description }}</p>
-  <form (ngSubmit)="onChangeTaskStatus(task().id, status.value)">
+  <p>{{ tasks.task().desc }}</p>
+  <form (ngSubmit)="tasks.onChangeTaskStatus(tasks.task().id, status.value)">
     <select #status>
-      <option value="open" [selected]="task().status === 'OPEN'">Open</option>
-      <option value="in-progress" [selected]="task().status === 'IN_PROGRESS'">
+      <option value="open" [selected]="tasks.task().status === 'open'">Open</option>
+      <option value="in_progress" [selected]="tasks.task().status === 'in_progress'">
         In-Progress
       </option>
-      <option value="done" [selected]="task().status === 'DONE'">
+      <option value="done" [selected]="tasks.task().status === 'done'">
         Completed
       </option>
     </select>

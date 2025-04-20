@@ -2,16 +2,15 @@ import { Component, ElementRef, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-new-task',
-  standalone: true,
-  imports: [FormsModule],
+     selector: 'app-new-task',
+      imports: [FormsModule],
   templateUrl: './new-task.component.html',
-  styleUrl: './new-task.component.scss',
+     styleUrl: './new-task.component.scss',
 })
 export class NewTaskComponent {
   private formEl = viewChild<ElementRef<HTMLFormElement>>('form');
 
-  onAddTask(title: string, description: string) {
+  onAddTask(title: string, desc: string) {
     this.formEl()?.nativeElement.reset();
   }
 }
