@@ -1,5 +1,8 @@
 <ul>
-  @for (message of msgs.all(); track $index) {
+  <!-- signal -->
+  <!-- @for (message of msgs.all(); track $index) { -->
+  <!-- zone.js: with AsyncPipe -->
+  @for (message of msgs.messages$ | async; track $index) {
     <li>{{ message }}</li>
   }
 </ul>

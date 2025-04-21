@@ -13,10 +13,13 @@ import { MessagesService } from '../messages.service';
 export class NewMessageComponent {
   logger = inject(LogService);
     msgs = inject(MessagesService);
-    text = signal('');
+    // text = signal('');
+    text = ''; // zone.js
 
   onSubmit() {
-    this.msgs.add(this.text());
-    this.text.set('');
+    // this.msgs.add(this.text()); // signal
+    // this.text.set(''); // signal
+    this.msgs.add(this.text); // zone.js
+    this.text = ''; // zone.js
   }
 }
