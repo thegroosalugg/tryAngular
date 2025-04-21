@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { LogService } from 'app/log.service';
+import { MessagesService } from '../messages.service';
 
 @Component({
          selector: 'app-messages-list',
@@ -8,6 +9,6 @@ import { LogService } from 'app/log.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessagesListComponent {
-    logger = inject(LogService);
-  messages = input.required<string[]>();
+  logger = inject(LogService);
+    msgs = inject(MessagesService);
 }

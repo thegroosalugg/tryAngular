@@ -12,10 +12,5 @@ import { LogService } from 'app/log.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessagesComponent {
-    logger = inject(LogService);
-  messages = signal<string[]>([]);
-
-  onAddMessage(message: string) {
-    this.messages.update((oldMessages) => [message, ...oldMessages]);
-  }
+  logger = inject(LogService);
 }

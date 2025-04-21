@@ -1,5 +1,5 @@
 <ul>
-  @for (message of messages(); track message) {
+  @for (message of msgs.all(); track $index) {
     <li>{{ message }}</li>
   }
 </ul>

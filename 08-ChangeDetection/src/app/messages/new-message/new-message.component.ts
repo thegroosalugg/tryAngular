@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LogService } from 'app/log.service';
+import { MessagesService } from '../messages.service';
 
 @Component({
          selector: 'app-new-message',
@@ -11,11 +12,11 @@ import { LogService } from 'app/log.service';
 })
 export class NewMessageComponent {
   logger = inject(LogService);
-     add = output<string>();
+    msgs = inject(MessagesService);
     text = signal('');
 
   onSubmit() {
-    this.add.emit(this.text());
+    this.msgs.add(this.text());
     this.text.set('');
   }
 }
