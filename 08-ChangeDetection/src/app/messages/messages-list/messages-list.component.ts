@@ -1,15 +1,13 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { LogService } from 'app/log.service';
 
 @Component({
-     selector: 'app-messages-list',
-  templateUrl: './messages-list.component.html',
-     styleUrl: './messages-list.component.scss',
+         selector: 'app-messages-list',
+      templateUrl: './messages-list.component.html',
+         styleUrl: './messages-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessagesListComponent {
+    logger = inject(LogService);
   messages = input.required<string[]>();
-
-  get debugOutput() {
-    console.log('[MessagesList] "debugOutput" binding re-evaluated.');
-    return 'MessagesList Component Debug Output';
-  }
 }

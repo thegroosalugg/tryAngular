@@ -1,27 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
 import { InfoMessageComponent } from '../info-message/info-message.component';
-
+import { LogService } from '../log.service';
 @Component({
-  selector: 'app-counter',
-  standalone: true,
-  templateUrl: './counter.component.html',
-  styleUrl: './counter.component.scss',
-  imports: [InfoMessageComponent],
+         selector: 'app-counter',
+      templateUrl: './counter.component.html',
+         styleUrl: './counter.component.scss',
+          imports: [InfoMessageComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CounterComponent {
-  count = signal(0);
+  logger = inject(LogService);
+   count = signal(0);
 
-  get debugOutput() {
-    console.log('[Counter] "debugOutput" binding re-evaluated.');
-    return 'Counter Component Debug Output';
-  }
-
-  onDecrement() {
-    this.count.update((prevCount) => prevCount - 1);
-  }
-
-  onIncrement() {
-    this.count.update((prevCount) => prevCount + 1);
+  setCount(n: number) {
+    this.count.update((prev) => prev + n);
   }
 }

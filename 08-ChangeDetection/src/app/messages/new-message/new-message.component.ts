@@ -1,23 +1,21 @@
-import { Component, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { LogService } from 'app/log.service';
 
 @Component({
-     selector: 'app-new-message',
-      imports: [FormsModule],
-  templateUrl: './new-message.component.html',
-     styleUrl: './new-message.component.scss',
+         selector: 'app-new-message',
+          imports: [FormsModule],
+      templateUrl: './new-message.component.html',
+         styleUrl: './new-message.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewMessageComponent {
-  add = output<string>();
-  enteredText = signal('');
-
-  get debugOutput() {
-    console.log('[NewMessage] "debugOutput" binding re-evaluated.');
-    return 'NewMessage Component Debug Output';
-  }
+  logger = inject(LogService);
+     add = output<string>();
+    text = signal('');
 
   onSubmit() {
-    this.add.emit(this.enteredText());
-    this.enteredText.set('');
+    this.add.emit(this.text());
+    this.text.set('');
   }
 }

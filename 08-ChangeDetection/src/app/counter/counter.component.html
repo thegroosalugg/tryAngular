@@ -1,7 +1,7 @@
 <p>
-  <button (click)="onDecrement()">Decrement</button>
+  <button (click)="setCount(-1)">Minus</button>
   <span>{{ count() }}</span>
-  <button (click)="onIncrement()">Increment</button>
+  <button (click)="setCount(1)">Plus</button>
 </p>
-<p class="debug-output">{{ debugOutput }}</p>
+<p class="debug-output">{{ logger.viewPing('Counter') }}</p>
 <app-info-message />

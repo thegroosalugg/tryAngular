@@ -1,19 +1,18 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
 import { CounterComponent } from './counter/counter.component';
 import { MessagesComponent } from './messages/messages.component';
+import { LogService } from './log.service';
 
 @Component({
-     selector: 'app-root',
-      imports: [CounterComponent, MessagesComponent],
-  templateUrl: './app.component.html',
-     styleUrl: './app.component.scss'
+         selector: 'app-root',
+          imports: [CounterComponent, MessagesComponent],
+      templateUrl: './app.component.html',
+         styleUrl: './app.component.scss',
+  // *OnPush: limits change detection to this component and its children
+  changeDetection: ChangeDetectionStrategy.OnPush // (manual | input value | events) changes
 })
 
-
 export class AppComponent {
-  get debugOutput() {
-    console.log('[AppComponent] "debugOutput" binding re-evaluated');
-    return 'AppComponent Component Debug Output';
-  }
+  logger = inject(LogService);
 }

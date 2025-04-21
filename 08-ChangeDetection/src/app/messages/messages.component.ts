@@ -1,24 +1,21 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
 import { MessagesListComponent } from './messages-list/messages-list.component';
 import { NewMessageComponent } from './new-message/new-message.component';
+import { LogService } from 'app/log.service';
 
 @Component({
-  selector: 'app-messages',
-  standalone: true,
-  templateUrl: './messages.component.html',
-  styleUrl: './messages.component.scss',
-  imports: [MessagesListComponent, NewMessageComponent],
+         selector: 'app-messages',
+      templateUrl: './messages.component.html',
+         styleUrl: './messages.component.scss',
+          imports: [MessagesListComponent, NewMessageComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessagesComponent {
+    logger = inject(LogService);
   messages = signal<string[]>([]);
 
-  get debugOutput() {
-    console.log('[Messages] "debugOutput" binding re-evaluated.');
-    return 'Messages Component Debug Output';
-  }
-
   onAddMessage(message: string) {
-    this.messages.update((oldMessages) => [...oldMessages, message]);
+    this.messages.update((oldMessages) => [message, ...oldMessages]);
   }
 }

@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { LogService } from 'app/log.service';
 
 @Component({
-     selector: 'app-info-message',
-      imports: [],
-  templateUrl: './info-message.component.html',
-     styleUrl: './info-message.component.scss',
+         selector: 'app-info-message',
+          imports: [],
+      templateUrl: './info-message.component.html',
+         styleUrl: './info-message.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InfoMessageComponent {
-  get debugOutput() {
-    console.log('[InfoMessages] "debugOutput" binding re-evaluated.');
-    return 'InfoMessage Component Debug Output';
-  }
+  logger = inject(LogService);
 
   onLog() {
     console.log('Clicked!');
