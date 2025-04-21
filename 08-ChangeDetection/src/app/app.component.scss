@@ -1,0 +1,24 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background: radial-gradient(ellipse closest-side at center, #c0c0c0, #7f7f7f);
+}
+
+main {
+  flex: 1;
+  padding: 1rem 10%;
+}
+
+h1 {
+  margin: 3rem 0;
+  text-align: center;
+  color: #e2dfd6;
+}
+
+ p {
+  padding: 0.5rem;
+  background: #9928b5;
+  color: #fff;
+ }
