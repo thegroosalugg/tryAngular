@@ -1,0 +1,40 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background: linear-gradient(to bottom, #36166f, #ca19a4);
+}
+
+main {
+  flex: 1;
+  padding: 1rem 10%;
+}
+
+img {
+  margin: 3rem auto;
+  width: 10rem;
+  height: 10rem;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.7));
+}
+
+h1, p {
+  text-align: center;
+}
+
+button {
+  font: inherit;
+  margin-top: 0.5rem;
+  padding: 0.25rem 1rem;
+  border-radius: 4px;
+  background-color: #c36eed;
+  border: 1px solid #c36eed;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    background-color: #bd56f1;
+    border-color: #bd56f1;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  }
+}
