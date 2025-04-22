@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
-import { AvailablePlacesComponent } from './places/available-places/available-places.component';
-import { UserPlacesComponent } from './places/user-places/user-places.component';
+import { PlacesComponent } from './places/places.component';
 @Component({
      selector: 'app-root',
-      imports: [AvailablePlacesComponent, UserPlacesComponent],
+      imports: [PlacesComponent],
   templateUrl: './app.component.html',
      styleUrl: './app.component.scss'
 })

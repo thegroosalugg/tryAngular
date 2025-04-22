@@ -1,11 +1,14 @@
+<h2>{{ isUser() ? 'Saved Places' : 'Everything' }}</h2>
 <ul>
   @for (place of places(); track place.id) {
-  <li (click)="onSelectPlace(place)">
-    <img
-      [src]="'http://localhost:3000/' + place.image.src"
-      [alt]="place.image.alt"
-    />
-    <h3>{{ place.title }}</h3>
-  </li>
+    <li (click)="onSelect(place)">
+      <img
+        [src]="'http://localhost:3000/' + place.image.src"
+        [alt]="place.image.alt"
+      />
+      <h3>{{ place.title }}</h3>
+    </li>
+  } @empty {
+    <p>List Empty</p>
   }
 </ul>
