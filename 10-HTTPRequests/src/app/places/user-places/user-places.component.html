@@ -1,3 +1,7 @@
 <app-places-container title="Your Favorite Places">
-  <p>Todo...</p>
+  @if (places().length > 0) {
+  <app-places [places]="places()" />
+  } @else {
+  <p>Unfortunately, no places could be found.</p>
+  }
 </app-places-container>

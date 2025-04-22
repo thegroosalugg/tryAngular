@@ -17,16 +17,16 @@ app.use((req, res, next) => {
 });
 
 app.get("/places", async (req, res) => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  await new Promise((resolve) => setTimeout(resolve, 1500));
   const fileContent = await fs.readFile("./data/places.json");
-  const placesData = JSON.parse(fileContent);
-  res.status(200).json({ places: placesData });
+  const places = JSON.parse(fileContent);
+  res.status(200).json(places);
 });
 
 app.get("/user-places", async (req, res) => {
   const fileContent = await fs.readFile("./data/user-places.json");
   const places = JSON.parse(fileContent);
-  res.status(200).json({ places });
+  res.status(200).json(places);
 });
 
 app.put("/user-places", async (req, res) => {
@@ -51,7 +51,7 @@ app.put("/user-places", async (req, res) => {
     JSON.stringify(updatedUserPlaces)
   );
 
-  res.status(200).json({ userPlaces: updatedUserPlaces });
+  res.status(200).json(updatedUserPlaces);
 });
 
 app.delete("/user-places/:id", async (req, res) => {
@@ -73,7 +73,7 @@ app.delete("/user-places/:id", async (req, res) => {
     JSON.stringify(updatedUserPlaces)
   );
 
-  res.status(200).json({ userPlaces: updatedUserPlaces });
+  res.status(200).json(updatedUserPlaces);
 });
 
 // 404
