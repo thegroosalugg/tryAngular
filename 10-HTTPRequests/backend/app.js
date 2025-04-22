@@ -16,71 +16,55 @@ app.use((req, res, next) => {
   next();
 });
 
+const getData = async (path, delay = 0) => {
+  await new Promise((resolve) => setTimeout(resolve, delay));
+  const data = await fs.readFile(path);
+  return JSON.parse(data);
+};
+
 app.get("/places", async (req, res) => {
-  await new Promise((resolve) => setTimeout(resolve, 1500));
-  const fileContent = await fs.readFile("./data/places.json");
-  const places = JSON.parse(fileContent);
+  const places = await getData("./data/places.json", 1500);
   res.status(200).json(places);
 });
 
 app.get("/user-places", async (req, res) => {
-  const fileContent = await fs.readFile("./data/user-places.json");
-  const places = JSON.parse(fileContent);
+  const places = await getData("./data/user-places.json", 1000);
   res.status(200).json(places);
 });
 
 app.put("/user-places", async (req, res) => {
-  const placeId = req.body.placeId;
+  const { placeId } = req.body;
 
-  const fileContent = await fs.readFile("./data/places.json");
-  const placesData = JSON.parse(fileContent);
+  const places = await getData("./data/places.json");
+  const place = places.find((place) => place.id === placeId);
 
-  const place = placesData.find((place) => place.id === placeId);
+  const userPlaces = await getData("./data/user-places.json");
 
-  const userPlacesFileContent = await fs.readFile("./data/user-places.json");
-  const userPlacesData = JSON.parse(userPlacesFileContent);
-
-  let updatedUserPlaces = userPlacesData;
-
-  if (!userPlacesData.some((p) => p.id === place.id)) {
-    updatedUserPlaces = [...userPlacesData, place];
+  if (!userPlaces.some(({ id }) => id === place.id)) {
+    userPlaces.unshift(place);
+    await fs.writeFile("./data/user-places.json", JSON.stringify(userPlaces));
   }
 
-  await fs.writeFile(
-    "./data/user-places.json",
-    JSON.stringify(updatedUserPlaces)
-  );
-
-  res.status(200).json(updatedUserPlaces);
+  res.status(200).json(userPlaces);
 });
 
 app.delete("/user-places/:id", async (req, res) => {
   const placeId = req.params.id;
+  const userPlaces = await getData("./data/user-places.json");
 
-  const userPlacesFileContent = await fs.readFile("./data/user-places.json");
-  const userPlacesData = JSON.parse(userPlacesFileContent);
+  const index = userPlaces.findIndex(({ id }) => id === placeId);
 
-  const placeIndex = userPlacesData.findIndex((place) => place.id === placeId);
-
-  let updatedUserPlaces = userPlacesData;
-
-  if (placeIndex >= 0) {
-    updatedUserPlaces.splice(placeIndex, 1);
+  if (index >= 0) {
+    userPlaces.splice(index, 1);
+    await fs.writeFile("./data/user-places.json", JSON.stringify(userPlaces));
   }
 
-  await fs.writeFile(
-    "./data/user-places.json",
-    JSON.stringify(updatedUserPlaces)
-  );
-
-  res.status(200).json(updatedUserPlaces);
+  res.status(200).json(userPlaces);
 });
 
 // 404
 app.use((req, res, next) => {
-  if (req.method === "OPTIONS") {
-    return next();
-  }
+  if (req.method === "OPTIONS") return next();
   res.status(404).json({ message: "404 - Not Found" });
 });
 
