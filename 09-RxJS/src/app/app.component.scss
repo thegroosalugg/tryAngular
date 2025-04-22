@@ -25,8 +25,9 @@ h1, p {
 
 button {
   font: inherit;
-  margin-top: 0.5rem;
+  margin: 0.5rem auto;
   padding: 0.25rem 1rem;
+  display: block;
   border-radius: 4px;
   background-color: #c36eed;
   border: 1px solid #c36eed;
