@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ModalService } from '../modal.service';
 import { ModalComponent } from '../modal.component';
+import { ErrorService } from './error.service';
 
 @Component({
      selector: 'app-error-modal',
@@ -9,5 +9,5 @@ import { ModalComponent } from '../modal.component';
      styleUrl: './error.component.scss'
 })
 export class ErrorComponent {
-  public modal = inject(ModalService);
+  public err = inject(ErrorService);
 }

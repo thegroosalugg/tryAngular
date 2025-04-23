@@ -1,12 +1,14 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap, throwError } from 'rxjs';
+import { ErrorService } from 'app/shared/modal/error/error.service';
 import { Place } from './place.model';
 
 @Injectable({ providedIn: 'root' })
 export class PlacesService {
   url = 'http://localhost:3000/';
   private httpClient = inject(HttpClient); // httpClient is an Observer object
+  private      error = inject(ErrorService);
   private  allPlaces = signal<Place[]>([]);
   private userPlaces = signal<Place[]>([]);
    all = this.allPlaces.asReadonly();
@@ -29,6 +31,7 @@ export class PlacesService {
       catchError((err) => {
         // catchError/throwError (imported): intercepts errors before the stream is terminated
         console.log('catchError Function', err); // can be used to rollback optimistic updates etc.
+        this.error.popUp('Failed to load places');
         return throwError(() => 'Transformed Error');
         // can handle errors before the component finds out there was an error
       })
