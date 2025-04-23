@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { Place } from './place.model';
 
 @Injectable({ providedIn: 'root' })
@@ -26,6 +26,12 @@ export class PlacesService {
             this.allPlaces.set(res); // main component instance state - won't update after init
           }
         },
+      }), // pipe() can accept multiple functions as arguments
+      catchError((err) => {
+        // catchError/throwError (imported): intercepts errors before the stream is terminated
+        console.log('catchError Function', err); // can be used to rollback optimistic updates etc.
+        return throwError(() => 'Transformed Error');
+        // can handle errors before the component finds out there was an error
       })
     );
   }
@@ -37,7 +43,7 @@ export class PlacesService {
         tap({ next: (res) => setTimeout(() => this.userPlaces.set(res), 100) })
       );
   }
-  
+
   remove(place: Place) {
     return this.httpClient
       .delete<Place[]>(this.url + 'user-places/' + place.id) // as params

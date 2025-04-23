@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { Place } from './place.model';
 import { PlacesService } from './places.service';
 
@@ -14,9 +14,14 @@ export class PlacesComponent {
       places = computed(() =>
     this.isUser() ? this.placesServ.user() : this.placesServ.all()
   );
+  isLoading = signal(false);
 
   ngOnInit() {
-    this.placesServ.load(this.isUser()).subscribe();
+    this.isLoading.set(true)
+    this.placesServ.load(this.isUser()).subscribe({
+      complete: (   ) => this.isLoading.set(false),
+         error: (err) => console.log('Subscribe Error:', err)
+    });
   }
 
   onSelect(place: Place) {
