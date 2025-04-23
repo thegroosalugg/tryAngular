@@ -1,0 +1,29 @@
+div {
+  padding: 1rem;
+  background: #f4c7c7;
+  color: #3e0505;
+}
+
+h2, p {
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+button {
+  display: block;
+  margin-left: auto;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background: #5d0909;
+  color: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+
+  &:hover {
+    background: #3e0505;
+  }
+}
