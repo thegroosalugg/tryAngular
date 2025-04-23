@@ -47,6 +47,8 @@ export class PlacesService {
       .put<Place[]>(this.url + 'user-places', { placeId: place.id }) // as req.body
       .pipe( // using tap/subscribe({ next() }) to update data causes FS hosted images to fail...
         catchError((err) => { // ...only optimistic updating outside Observable loads them correctly
+          const msg = err.status === 409 ? 'Duplicate' : 'Unable to add'
+          this.error.popUp(msg);
           this.userPlaces.set(prevData); // Rollback optimism on error
           return throwError(() => err); // Pass error to subscribe({ error })
         })
@@ -56,6 +58,12 @@ export class PlacesService {
   remove(place: Place) {
     return this.httpClient
       .delete<Place[]>(this.url + 'user-places/' + place.id) // as req.params
-      .pipe(tap({ next: (res) => this.userPlaces.set(res) }));
+      .pipe(
+        tap({ next: (res) => this.userPlaces.set(res) }),
+        catchError((err) => {
+          this.error.popUp('Deletion failed');
+          return throwError(() => err);
+        })
+      );
   }
 }

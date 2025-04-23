@@ -17,7 +17,15 @@ app.use((req, res, next) => {
 });
 
 const getData = async (path, delay = 0) => {
-  await new Promise((resolve) => setTimeout(resolve, delay));
+  await new Promise((resolve, reject) =>
+    setTimeout(() => {
+      if (Math.random() > 0.25) {
+        resolve();
+      } else {
+        reject(); // simulate 25% error chance in any function
+      }
+    }, delay)
+  );
   const data = await fs.readFile(path);
   return JSON.parse(data);
 };
@@ -41,7 +49,7 @@ app.put("/user-places", async (req, res) => {
   const userPlaces = await getData("./data/user-places.json");
 
   if (userPlaces.some(({ id }) => id === place.id)) {
-    res.status(400).json({ message: 'Place already added' });
+    res.status(409).json({ message: 'Place already added' });
     return;
   }
 
