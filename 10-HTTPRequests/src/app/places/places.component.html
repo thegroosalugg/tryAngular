@@ -1,9 +1,9 @@
 <h2>{{ isUser() ? 'Saved Places' : 'Everything' }}</h2>
 <ul>
-  @for (place of isUser() ? placesService.userPlaces() : places(); track place.id) {
+  @for (place of places(); track place.id) {
     <li (click)="onSelect(place)">
       <img
-        [src]="placesService.url + place.image.src"
+        [src]="placesServ.url + place.image.src"
         [alt]="place.image.alt"
       />
       <h3>{{ place.title }}</h3>
