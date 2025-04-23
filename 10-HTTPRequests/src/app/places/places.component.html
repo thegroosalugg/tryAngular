@@ -3,7 +3,7 @@
   @for (place of isUser() ? placesService.userPlaces() : places(); track place.id) {
     <li (click)="onSelect(place)">
       <img
-        [src]="url + place.image.src"
+        [src]="placesService.url + place.image.src"
         [alt]="place.image.alt"
       />
       <h3>{{ place.title }}</h3>

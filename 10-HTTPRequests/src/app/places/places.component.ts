@@ -10,17 +10,14 @@ import { PlacesService } from './places.service';
      styleUrl: './places.component.scss',
 })
 export class PlacesComponent {
-  private httpClient = inject(HttpClient);
-     url = 'http://localhost:3000/';
   isUser = input<boolean>(false);
   places = signal<Place[]>([]);
   placesService = inject(PlacesService);
 
   ngOnInit() {
     // httpClient is an Observer object
-    const endPoint = `${this.isUser() ? 'user-' : ''}places`;
-    // .get can receive 2nd config arg => { observe: 'response' | 'event }
-    this.httpClient.get<Place[]>(this.url + endPoint).subscribe({
+    const endPoint = `${this.isUser() ? 'user-' : ''}places` as const;
+    this.placesService.load(endPoint).subscribe({
       // observed .get data is returned here
       next: (res) => {
         if (this.isUser()) {
@@ -36,19 +33,15 @@ export class PlacesComponent {
   onSelect(place: Place) {
     if (this.isUser()) {
       // when user-places component instance - delete a place from user-places
-      this.httpClient
-        .delete<Place[]>(this.url + 'user-places/' + place.id) // as params
-        .subscribe({
-          next: (res) => this.placesService.userPlaces.set(res),
-        });
+      this.placesService.remove(place).subscribe({
+        next: (res) => this.placesService.userPlaces.set(res),
+      });
     } else {
       // when main component instance for all places - adds a place to user-places
-      this.httpClient
-        .put<Place[]>(this.url + 'user-places', { placeId: place.id }) // as body
-        .subscribe({
-          next: (res) => // delayed: instant updates cause FS hosted images to fail to load
-            setTimeout(() => this.placesService.userPlaces.set(res), 100),
-        });
+      this.placesService.add(place).subscribe({
+        next: (res) => // delayed: instant updates cause FS hosted images to fail to load
+          setTimeout(() => this.placesService.userPlaces.set(res), 100),
+      });
     }
   }
 }
