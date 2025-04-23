@@ -1,0 +1,9 @@
+@if (modal.isOpen()) {
+  <app-modal>
+    <div>
+      <h2>{{ "TITLE" }}</h2>
+      <p>{{ "An error has occured." }}</p>
+      <button class="button" (click)="modal.close()">Okay</button>
+    </div>
+  </app-modal>
+}
