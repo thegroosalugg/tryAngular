@@ -6,9 +6,9 @@ import { Place } from './place.model';
   providedIn: 'root',
 })
 export class PlacesService {
-  private userPlaces = signal<Place[]>([]);
+  userPlaces = signal<Place[]>([]);
 
-  loadedUserPlaces = this.userPlaces.asReadonly();
+  // loadedUserPlaces = this.userPlaces.asReadonly();
 
   loadAvailablePlaces() {}
 
