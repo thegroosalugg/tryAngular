@@ -17,8 +17,7 @@ export class PlacesService {
     // .get can receive 2nd config arg => { observe: 'response' | 'event }
     return this.httpClient.get<Place[]>(this.url + endPoint).pipe(
       // return functions so .pipe etc. can be chained
-      tap({
-        // tap allows running of functions with received data without subscribing
+      tap({ // tap allows running of functions with received data without subscribing
         next: (res) => {
           if (shouldLoadUser) {
             this.userPlaces.set(res); // separate state for user component instance
@@ -37,16 +36,23 @@ export class PlacesService {
   }
 
   add(place: Place) {
+    const prevData = this.userPlaces(); // make a copy of existing data
+    if (!this.userPlaces().some(({ id }) => id === place.id)) {
+      this.userPlaces.set([place, ...prevData]); // optimistic updating
+    } // no early return, function expects an Observable returned
     return this.httpClient
-      .put<Place[]>(this.url + 'user-places', { placeId: place.id }) // as body
-      .pipe( // delayed: instant updates cause FS hosted images to fail on load
-        tap({ next: (res) => setTimeout(() => this.userPlaces.set(res), 100) })
+      .put<Place[]>(this.url + 'user-places', { placeId: place.id }) // as req.body
+      .pipe( // using tap/subscribe({ next() }) to update data causes FS hosted images to fail...
+        catchError((err) => { // ...only optimistic updating outside Observable loads them correctly
+          this.userPlaces.set(prevData); // Rollback optimism on error
+          return throwError(() => err); // Pass error to subscribe({ error })
+        })
       );
   }
 
   remove(place: Place) {
     return this.httpClient
-      .delete<Place[]>(this.url + 'user-places/' + place.id) // as params
+      .delete<Place[]>(this.url + 'user-places/' + place.id) // as req.params
       .pipe(tap({ next: (res) => this.userPlaces.set(res) }));
   }
 }

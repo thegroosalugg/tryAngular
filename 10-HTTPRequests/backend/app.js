@@ -40,11 +40,13 @@ app.put("/user-places", async (req, res) => {
 
   const userPlaces = await getData("./data/user-places.json");
 
-  if (!userPlaces.some(({ id }) => id === place.id)) {
-    userPlaces.unshift(place);
-    await fs.writeFile("./data/user-places.json", JSON.stringify(userPlaces));
+  if (userPlaces.some(({ id }) => id === place.id)) {
+    res.status(400).json({ message: 'Place already added' });
+    return;
   }
 
+  userPlaces.unshift(place);
+  await fs.writeFile("./data/user-places.json", JSON.stringify(userPlaces));
   res.status(200).json(userPlaces);
 });
 

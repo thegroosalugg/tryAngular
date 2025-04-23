@@ -1,5 +1,7 @@
 <h2>{{ isUser() ? "Saved Places" : "Everything" }}</h2>
-@if (!this.isLoading()) {
+@if (this.isLoading()) {
+  <p>Loading...</p>
+} @else {
   <ul>
     @for (place of places(); track place.id) {
       <li (click)="onSelect(place)">
@@ -10,6 +12,4 @@
       <p>List Empty</p>
     }
   </ul>
-} @else {
-  <p>Loading...</p>
 }

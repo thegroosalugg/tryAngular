@@ -10,11 +10,11 @@ import { PlacesService } from './places.service';
 })
 export class PlacesComponent {
       isUser = input<boolean>(false);
+   isLoading = signal(false);
   placesServ = inject(PlacesService);
       places = computed(() =>
     this.isUser() ? this.placesServ.user() : this.placesServ.all()
   );
-  isLoading = signal(false);
 
   ngOnInit() {
     this.isLoading.set(true)
