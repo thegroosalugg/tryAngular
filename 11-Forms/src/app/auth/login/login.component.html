@@ -1,15 +1,39 @@
-@let    email = 'email';
-@let password = 'password';
+<!-- can check .touched .pristine .dirty .errors .valid .invalid on inputs
+to confirm various interactions -->
+@let    emailLabel =    'Email' +    (email.errors && form.submitted ? ' invalid' : '');
+@let passwordLabel = 'Password' + (password.errors && form.submitted ? ' invalid' : '');
 <h2>Login</h2>
-<form>
+<!-- #setting #TemplateVar value to 'ngForm' changes it from an HTML Element reference
+to a directive instance of NgForm -->
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <div>
-    <label [for]="email">{{ email }}</label>
-    <input [id]="email" [type]="email" />
+    <label for="email">{{ emailLabel }}</label>
+    <!-- ngModel can also be 1-way bound -->
+    <!-- #setting #TemplateVars to ngModel creates a directive instance of the elements
+    usable in the template -->
+    <input
+           id="email"
+         type="email"
+         name="email"
+       ngModel
+      required
+         email
+        #email="ngModel"
+    />
   </div>
 
   <div>
-    <label [for]="password">{{ password }}</label>
-    <input [id]="password" [type]="password" />
+    <label for="password">{{ passwordLabel }}</label>
+    <!-- ngForms allows you to set client side validation -->
+    <input
+            id="password"
+          type="password"
+          name="password"
+        ngModel
+       required
+      minlength="6"
+      #password="ngModel"
+    />
   </div>
   <button>Login</button>
 </form>
