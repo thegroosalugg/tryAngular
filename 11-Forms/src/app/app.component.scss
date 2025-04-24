@@ -1,0 +1,35 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background: linear-gradient(#708d96, #9fa8ab);
+}
+
+main {
+  flex: 1;
+  padding: 1rem 10%;
+}
+
+header {
+  padding: 1rem;
+  text-align: center;
+
+  img {
+    margin: auto;
+    width: 6rem;
+    height: 6rem;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid #758a8a;
+    filter: drop-shadow(0 0 4px rgba(31, 42, 42, 0.5));
+  }
+
+  h1 {
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    letter-spacing: 0.2rem;
+    color: #2f4444;
+  }
+}

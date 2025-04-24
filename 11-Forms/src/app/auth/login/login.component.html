@@ -1,0 +1,15 @@
+@let    email = 'email';
+@let password = 'password';
+<h2>Login</h2>
+<form>
+  <div>
+    <label [for]="email">{{ email }}</label>
+    <input [id]="email" [type]="email" />
+  </div>
+
+  <div>
+    <label [for]="password">{{ password }}</label>
+    <input [id]="password" [type]="password" />
+  </div>
+  <button>Login</button>
+</form>
