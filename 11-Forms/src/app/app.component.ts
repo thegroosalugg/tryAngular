@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
+import { LoginTemplateComponent } from './auth/login-template-driven/login.template.component';
+import { LoginReactiveComponent } from "./auth/login-reactive/login.reactive.component";
+
+const imports = [
+  // LoginTemplateComponent,
+  LoginReactiveComponent,
+];
 
 @Component({
      selector: 'app-root',
-      imports: [LoginComponent],
+      imports,
   templateUrl: './app.component.html',
      styleUrl: './app.component.scss'
 })

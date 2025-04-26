@@ -1,0 +1,26 @@
+<h2>Login</h2>
+<!-- connect to form - as per new FormControlGroup variable -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="email">email</label>
+    <!-- the long way of connecting inputs under the hood -->
+    <input
+        id="email"
+      type="email"
+      name="email"
+      [formControl]="form.controls.email"
+    />
+  </div>
+
+  <div>
+    <label for="password">password</label>
+    <!-- shorthand way to connect input to the form control group -->
+    <input
+        id="password"
+      type="password"
+      name="password"
+      formControlName="password"
+    />
+  </div>
+  <button>Login</button>
+</form>

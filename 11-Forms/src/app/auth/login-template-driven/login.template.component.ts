@@ -4,12 +4,12 @@ import { debounceTime } from 'rxjs';
 
 // *TEMPLATE DRIVEN APPROACH
 @Component({
-     selector: 'app-login',
+     selector: 'app-login-template',
       imports: [FormsModule],
-  templateUrl: './login.component.html',
-     styleUrl: './login.component.scss',
+  templateUrl: './login.template.component.html',
+     styleUrl: './login.template.component.scss',
 })
-export class LoginComponent {
+export class LoginTemplateComponent {
   form = viewChild.required<NgForm>('form'); // capture ngForm with #form #templateVar
   destroyRef = inject(DestroyRef);
 
