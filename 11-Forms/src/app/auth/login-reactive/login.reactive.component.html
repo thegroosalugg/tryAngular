@@ -1,11 +1,8 @@
-@let    emailLabel =    'Email' +    (form.controls.email.errors ? ' invalid' : '');
-@let passwordLabel = 'Password' + (form.controls.password.errors ? ' invalid' : '');
 <h2>Login</h2>
 <!-- connect to form - as per new FormControlGroup variable -->
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div>
-    <label for="email">{{ emailLabel }}</label>
-    <!-- the long way of connecting inputs under the hood -->
+    <label for="email">Email {{ isValid('email') ? 'invalid' : '' }}</label>
     <input
         id="email"
       type="email"
@@ -15,7 +12,7 @@
   </div>
 
   <div>
-    <label for="password">{{ passwordLabel }}</label>
+    <label for="password">Password {{ isValid('password') ? 'invalid' : '' }}</label>
     <!-- shorthand way to connect input to the form control group -->
     <input
         id="password"

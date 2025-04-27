@@ -20,8 +20,19 @@ export class LoginReactiveComponent {
     }),
   });
 
+  isValid(field: 'email' | 'password') {
+    const { touched, dirty, invalid } = this.form.controls[field];
+    return touched && dirty && invalid;
+  }
 
   onSubmit() {
+    // mark controls as touched & dirty on submission -> fixes blank form submits
+    for (const field in this.form.controls) {
+      const control = this.form.get(field);
+      control?.markAsTouched();
+      control?.markAsDirty();
+    }
+
     console.log(this.form);
     const { email, password } = this.form.value; // reactive forms offer better TS support
     console.log('email', email, 'password', password);
