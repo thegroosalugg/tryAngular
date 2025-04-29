@@ -11,7 +11,7 @@ import { debounceTime } from 'rxjs';
 })
 export class LoginTemplateComponent {
   form = viewChild.required<NgForm>('form'); // capture ngForm with #form #templateVar
-  destroyRef = inject(DestroyRef);
+  private destroyRef = inject(DestroyRef);
 
   constructor() {
     // afterNextRender() defers execution until after the component has rendered once
@@ -19,7 +19,7 @@ export class LoginTemplateComponent {
       const savedData = localStorage.getItem('form-data');
 
       if (savedData) {
-        const email = JSON.parse(savedData).email;
+        const { email } = JSON.parse(savedData);
         // timeout required: though <Form> is initialised, its children controls are not yet in this lifecycle
         setTimeout(() => {
           this.form().controls['email'].setValue(email);

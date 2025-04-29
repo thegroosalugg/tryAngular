@@ -2,7 +2,7 @@
 <!-- connect to form - as per new FormControlGroup variable -->
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div>
-    <label for="email">Email {{ isValid('email') ? 'invalid' : '' }}</label>
+    <label for="email">Email {{ isInvalid('email') ? 'invalid' : '' }}</label>
     <input
         id="email"
       type="email"
@@ -12,7 +12,7 @@
   </div>
 
   <div>
-    <label for="password">Password {{ isValid('password') ? 'invalid' : '' }}</label>
+    <label for="password">Password {{ isInvalid('password') ? 'invalid' : '' }}</label>
     <!-- shorthand way to connect input to the form control group -->
     <input
         id="password"

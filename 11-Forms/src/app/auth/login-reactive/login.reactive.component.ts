@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { of } from 'rxjs';
+import { debounceTime, of } from 'rxjs';
 
 // custom validator: receives control as an arg
 function mustIncludeSpecialChars(control: AbstractControl) {
@@ -22,7 +22,8 @@ function isUnique(control: AbstractControl) {
   templateUrl: './login.reactive.component.html',
      styleUrl: './login.reactive.component.scss',
 })
-export class LoginReactiveComponent {
+export class LoginReactiveComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
   form = new FormGroup({
     email: new FormControl('', { // initial values optional
       // can set validators directly as an Array[]. Obj{} config optional for extra props
@@ -35,7 +36,29 @@ export class LoginReactiveComponent {
     }),
   });
 
-  isValid(field: 'email' | 'password') {
+  // reactiveForms can use ngOnInit as the form is initialised immediately, not after template has rendered
+  ngOnInit() {
+    const savedData = localStorage.getItem('form-data');
+
+    if (savedData) {
+      const { email } = JSON.parse(savedData);
+      this.form.patchValue({ email }); // patchValue is an alternative offered by FormControl
+    } // allows to change 1 or multiple form values
+
+    const subscription = this.form.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: (value) =>
+          localStorage.setItem(
+            'form-data',
+            JSON.stringify({ email: value.email })
+          ),
+      });
+
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
+  isInvalid(field: 'email' | 'password') {
     const { touched, dirty, invalid } = this.form.controls[field];
     return touched && dirty && invalid;
   }
@@ -48,8 +71,14 @@ export class LoginReactiveComponent {
       control?.markAsDirty();
     }
 
+    if (this.form.invalid) {
+      console.log('Invalid');
+      return;
+    }
+
     console.log(this.form);
     const { email, password } = this.form.value; // reactive forms offer better TS support
     console.log('email', email, 'password', password);
+    this.form.reset();
   }
 }
