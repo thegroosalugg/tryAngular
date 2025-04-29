@@ -59,6 +59,7 @@ export class LoginReactiveComponent implements OnInit {
   }
 
   isInvalid(field: 'email' | 'password') {
+    // Reactive forms do not need to wait for viewInit as the form is already defined
     const { touched, dirty, invalid } = this.form.controls[field];
     return touched && dirty && invalid;
   }
@@ -76,7 +77,6 @@ export class LoginReactiveComponent implements OnInit {
       return;
     }
 
-    console.log(this.form);
     const { email, password } = this.form.value; // reactive forms offer better TS support
     console.log('email', email, 'password', password);
     this.form.reset();

@@ -41,11 +41,26 @@ export class LoginTemplateComponent {
     });
   }
 
+  isInvalid(field: 'email' | 'password') {
+    // Template forms must wait for viewInit before we can access any form props
+    const { touched, dirty, invalid } = this.form().controls[field] ?? {};
+    return touched && dirty && invalid;
+  }
+
   onSubmit(ngForm: NgForm) {
-    if (ngForm.invalid) return;
+    for (const field in this.form().controls) {
+      const control = this.form().controls[field];
+      control.markAsTouched();
+      control.markAsDirty();
+    }
+
+    if (ngForm.invalid) {
+      console.log('Invalid');
+      return;
+    }
+
     const { email, password } = ngForm.controls;
-    console.log(email.value);
-    console.log(password.value);
+    console.log('EMAIL:', email.value, 'PASSWORD', password.value);
     ngForm.form.reset();
   }
 }
