@@ -1,6 +1,7 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { debounceTime, of } from 'rxjs';
+import { TableComponent } from "../table/table.component";
 
 // custom validator: receives control as an arg
 function mustIncludeSpecialChars(control: AbstractControl) {
@@ -18,7 +19,7 @@ function isUnique(control: AbstractControl) {
 // *REACTIVE APPROACH
 @Component({
      selector: 'app-login-reactive',
-      imports: [ReactiveFormsModule], // as opposed to FormsModule
+      imports: [TableComponent, ReactiveFormsModule], // as opposed to FormsModule
   templateUrl: './login.reactive.component.html',
      styleUrl: './login.reactive.component.scss',
 })
