@@ -48,8 +48,8 @@ export class LoginTemplateComponent {
   }
 
   onSubmit(ngForm: NgForm) {
-    for (const field in this.form().controls) {
-      const control = this.form().controls[field];
+    for (const field in ngForm.controls) {
+      const control = ngForm.controls[field];
       control.markAsTouched();
       control.markAsDirty();
     }

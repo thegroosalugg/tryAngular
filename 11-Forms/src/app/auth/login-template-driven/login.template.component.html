@@ -33,3 +33,66 @@ to a directive instance of NgForm -->
   </div>
   <button>Login</button>
 </form>
+
+<!-- can check .touched .pristine .dirty .errors .valid .invalid on inputs
+to confirm various interactions -->
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>  Email </th>
+      <th>Password</th>
+      <th>  Form  </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>            dirty   </td>
+      <td>{{    email.dirty }}</td>
+      <td>{{ password.dirty }}</td>
+      <td>{{     form.dirty }}</td>
+    </tr>
+    <tr>
+      <td>            pristine   </td>
+      <td>{{    email.pristine }}</td>
+      <td>{{ password.pristine }}</td>
+      <td>{{     form.pristine }}</td>
+    </tr>
+    <tr>
+      <td>            touched   </td>
+      <td>{{    email.touched }}</td>
+      <td>{{ password.touched }}</td>
+      <td>           -          </td>
+    </tr>
+    <tr>
+      <td>            untouched   </td>
+      <td>{{    email.untouched }}</td>
+      <td>{{ password.untouched }}</td>
+      <td>            -           </td>
+    </tr>
+    <tr>
+      <td>            valid   </td>
+      <td>{{    email.valid }}</td>
+      <td>{{ password.valid }}</td>
+      <td>{{     form.valid }}</td>
+    </tr>
+    <tr>
+      <td>            invalid   </td>
+      <td>{{    email.invalid }}</td>
+      <td>{{ password.invalid }}</td>
+      <td>{{     form.invalid }}</td>
+    </tr>
+    <tr>
+      <td>           errors           </td>
+      <td>{{    email.errors | json }}</td>
+      <td>{{ password.errors | json }}</td>
+      <td>{{     form.errors | json }}</td>
+    </tr>
+    <tr>
+      <td>       submitted    </td>
+      <td>          –         </td>
+      <td>          –         </td>
+      <td>{{ form.submitted }}</td>
+    </tr>
+  </tbody>
+</table>
