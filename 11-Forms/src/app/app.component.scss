@@ -32,4 +32,22 @@ header {
     letter-spacing: 0.2rem;
     color: #2f4444;
   }
+
+  section {
+    button {
+      background: none;
+      border: none;
+      padding: 0 0.5rem;
+      margin: 0 0.2rem;
+      color: #2f4444;
+      transition: 0.5s ease-in-out;
+
+      &:nth-of-type(2) {
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+      }
+
+      &:hover { color: #fff; }
+    }
+  }
 }

@@ -1,6 +1,13 @@
 <header>
   <img src="logo.jpg" alt="A form and a pencil" />
   <h1>Angular Forms</h1>
+  <section>
+    @for (form of forms(); track form) {
+      <button (click)="switch($index)">{{ form }}</button>
+    }
+  </section>
 </header>
-<!-- <app-login-template /> -->
-<app-login-reactive />
+
+<!-- <ng-container>: logical wrapper that doesn't render any actual DOM
+[ngComponentOutlet]: built-in Angular directive that dynamically renders a component class at runtime -->
+<ng-container [ngComponentOutlet]="component()" />
