@@ -21,6 +21,8 @@ fieldset {
 .control {
   margin: 0.5rem 0;
 
+  &:has(.ng-invalid.ng-touched.ng-dirty) label { color: #f98b75; }
+
   &:has(input[type="checkbox"]) {
     display: flex;
     align-items: center;
@@ -54,6 +56,11 @@ fieldset {
       border: none;
       background: transparent;
       color: #d9e2f1;
+    }
+
+    &.ng-invalid.ng-touched.ng-dirty {
+      background-color: #fbdcd6;
+      border-color: #f84e2c;
     }
   }
 
