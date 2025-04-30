@@ -1,0 +1,145 @@
+<!-- bind to FormGroup -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>Welcome on board!</h2>
+  <p>We just need a little bit of data from you to get you started 🚀</p>
+
+  <!-- REACTIVE FORMS DO NOT NEED NAME PROP ON INPUTS -->
+  <div class="control">
+    <label for="email">Email</label>
+    <!-- formControlName binds to FormGroup -->
+    <input type="email" id="email" formControlName="email" />
+  </div>
+
+  <!-- nested formGroups must also be bound -->
+  <div class="control-row" formGroupName="passwords">
+    <div class="control">
+      <label for="password">Password</label>
+      <!-- bind formControlName -->
+      <input type="password" id="password" formControlName="password" />
+    </div>
+
+    <div class="control">
+      <label for="confirm-password">Confirm Password</label>
+      <!-- bind formControlName -->
+      <input type="password" id="confirm-password" formControlName="confirmPassword" />
+    </div>
+  </div>
+
+  <hr />
+
+  <section>
+    <!-- bind formGroup nest -->
+    <div class="control-row" formGroupName="fullName">
+      <div class="control">
+        <label for="first-name">First Name</label>
+        <!-- bind formControlName -->
+        <input id="first-name" formControlName="firstName" />
+      </div>
+
+      <div class="control">
+        <label for="last-name">Last Name</label>
+        <!-- bind formControlName -->
+        <input id="last-name" formControlName="lastName" />
+      </div>
+    </div>
+
+    <!-- bind formGroup nest -->
+    <fieldset formGroupName="address">
+      <legend>Your Address</legend>
+
+      <div class="control-row">
+        <div class="control">
+          <label for="street">Street</label>
+          <!-- bind formControlName -->
+          <input id="street" formControlName="street" />
+        </div>
+
+        <div class="control">
+          <label for="number">Number</label>
+          <!-- bind formControlName -->
+          <input type="number" id="number" formControlName="number" />
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="control">
+          <label for="post-code">Post Code</label>
+          <!-- bind formControlName -->
+          <input id="post-code" formControlName="postCode" />
+        </div>
+
+        <div class="control">
+          <label for="city">City</label>
+          <!-- bind formControlName -->
+          <input id="city" formControlName="city" />
+        </div>
+      </div>
+    </fieldset>
+  </section>
+
+  <hr />
+
+  <div class="control">
+    <label for="role">What best describes your role?</label>
+    <!-- bind formControlName -->
+    <select id="role" formControlName="role">
+      <option value="student" >Student </option>
+      <option value="teacher" >Teacher </option>
+      <option value="employee">Employee</option>
+      <option value="founder" >Founder </option>
+      <option value="other"   >Other   </option>
+    </select>
+  </div>
+
+  <!-- bind formArrayName -->
+  <fieldset formArrayName="source">
+    <legend>How did you find us?</legend>
+    <div class="control">
+      <!-- formControlName here maps indexes as they appear in FormArray -->
+      <input
+         type="checkbox"
+           id="google"
+        value="google"
+        formControlName="0"
+      />
+      <label for="google">Google</label>
+    </div>
+
+    <div class="control">
+      <!-- bind formArray Index -->
+      <input
+         type="checkbox"
+           id="friend"
+        value="friend"
+        formControlName="1"
+      />
+      <label for="friend">Referred by friend</label>
+    </div>
+
+    <div class="control">
+      <!-- bind formArray Index -->
+      <input
+         type="checkbox"
+           id="other"
+        value="other"
+        formControlName="2"
+      />
+      <label for="other">Other</label>
+    </div>
+  </fieldset>
+
+  <label for="terms">
+    <!-- bind formControlName -->
+    <input type="checkbox" id="terms" formControlName="terms" />
+    I agree to the terms and conditions
+  </label>
+
+  <p class="form-actions">
+    <button type="reset" class="btn-flat">Reset</button>
+    <button>Sign up</button>
+  </p>
+
+  @if (form.dirty && form.touched && form.invalid) {
+    <p class="error">Form Invalid - Check your inputs</p>
+  }
+</form>

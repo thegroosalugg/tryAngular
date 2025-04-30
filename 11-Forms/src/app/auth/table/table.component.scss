@@ -1,0 +1,44 @@
+:host {
+  display: block;
+  overflow-x: scroll;
+  padding: 0.2rem;
+}
+
+table {
+  border: 1px solid white;
+  padding: 0.5rem;
+  width: 100%;
+  text-align: center;
+
+  thead {
+    tr {
+      th {
+        text-transform: capitalize;
+
+        &:first-of-type {
+          text-align: start;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        vertical-align: top;
+        width: 150px;
+
+        &:first-of-type {
+          width: 20px;
+          font-weight: 700;
+          color: #afafaf;
+          text-align: start;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}
+
+.true  { color: #00ffd9; }
+.false { color: #ff6200; }

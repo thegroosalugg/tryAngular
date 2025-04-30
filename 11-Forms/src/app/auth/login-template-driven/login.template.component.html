@@ -1,0 +1,42 @@
+<h2>Login</h2>
+<!-- #setting #TemplateVar value to 'ngForm' changes it from an HTML Element reference
+to a directive instance of NgForm -->
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div>
+    <label for="email">Email {{ isInvalid('email') ? 'invalid' : '' }}</label>
+    <!-- ngModel can also be 1-way bound -->
+    <!-- #setting #TemplateVars to ngModel creates a directive instance of the elements
+    usable in the template -->
+    <input
+           id="email"
+         type="email"
+         name="email"
+       ngModel
+      required
+         email
+        #email="ngModel"
+    />
+  </div>
+  <!-- TEMPLATE DRIVEN FORMS NEED A NAME ATTRIBUTE -->
+  <div>
+    <label for="password">Password {{ isInvalid('password') ? 'invalid' : '' }}</label>
+    <!-- ngForms allows you to set client side validation -->
+    <input
+            id="password"
+          type="password"
+          name="password"
+        ngModel
+       required
+      minlength="6"
+      #password="ngModel"
+    />
+  </div>
+  <button>Login</button>
+</form>
+
+@if (viewReady()) {
+  <!-- NgForm has a nested Form object -->
+  <app-table [form]="form.form" />
+}
+
+<p>Submitted: {{ form.submitted }}</p>

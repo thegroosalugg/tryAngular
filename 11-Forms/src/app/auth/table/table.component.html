@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Form</th>
+      @for (field of controls(); track field) {
+        <th>{{ field }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (status of statuses; track status) {
+      <tr>
+        <td>{{ status }}</td>
+        @let formStatus = form()[status]?.toString();
+        <!-- boolean to string as className -->
+        <td [class]="formStatus">{{ formStatus }}</td>
+        @for (field of controls(); track field) {
+          @let fieldStatus = form().controls[field][status];
+          <!-- toString converts only className so object left in tact  -->
+          <td [class]="fieldStatus?.toString()">{{ fieldStatus | json }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
