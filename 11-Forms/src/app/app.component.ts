@@ -5,10 +5,11 @@ import { LoginReactiveComponent } from './auth/login-reactive/login.reactive.com
 import { SignupComponent } from './auth/signup/signup.component';
 import { NgComponentOutlet } from '@angular/common';
 
-type CustomComponent =
-  | typeof LoginTemplateComponent
-  | typeof LoginReactiveComponent
-  | typeof SignupComponent;
+const components = [
+  LoginTemplateComponent,
+  LoginReactiveComponent,
+  SignupComponent,
+];
 
 @Component({
      selector: 'app-root',
@@ -17,16 +18,11 @@ type CustomComponent =
      styleUrl: './app.component.scss',
 })
 export class AppComponent {
-       title = '11-Forms';
-       forms = signal(['Login-Template', 'Login-Reactive', 'SignUp-Reactive']);
-   component = signal<CustomComponent>(LoginTemplateComponent);
-  components = signal([
-    LoginTemplateComponent,
-    LoginReactiveComponent,
-    SignupComponent,
-  ]);
+      title = '11-Forms';
+      forms = signal(['Login-Template', 'Login-Reactive', 'SignUp-Reactive']);
+  component = signal(components[2]);
 
   switch(index: number) {
-    this.component.set(this.components()[index]);
+    this.component.set(components[index]);
   }
 }
