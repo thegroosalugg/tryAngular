@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 type Role = 'student' | 'teacher' | 'employer' | 'founder' | 'other';
 
@@ -32,7 +32,13 @@ export class SignupComponent {
           city: newFormControl(),
     }),
     // no required validators as defaultValue selected
-    role: new FormControl<Role>('student'),
+     role: new FormControl<Role>('student'),
+    // requires true boolean - where as required wants non null, and false is non-nullish
+    terms: new FormControl(false, { validators: [Validators.requiredTrue] }),
+    // expects an Array of new FormControl(defaultValue) per checkbox
+    source: new FormArray(
+      Array.from({ length: 3 }, () => new FormControl(false))
+    ),
   });
 
   private markSubmitted(formGroup: FormGroup) {
@@ -50,7 +56,7 @@ export class SignupComponent {
   }
 
   onSubmit() {
-    // console.log(this.form);
+    console.log(this.form.value);
     this.markSubmitted(this.form);
 
     if (this.form.invalid) {

@@ -18,6 +18,16 @@ fieldset {
   padding: 0 1rem;
 }
 
+.control-row {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.5rem;
+
+  .control { flex: 1; }
+}
+
 .control {
   margin: 0.5rem 0;
 
@@ -27,53 +37,56 @@ fieldset {
     display: flex;
     align-items: center;
   }
+}
 
-  label {
-    display: block;
-    font-size: 0.8rem;
-    margin-bottom: 0.2rem;
-    color: #9bafaf;
-    text-transform: uppercase;
-    font-weight: bold;
+label {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+  color: #9bafaf;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  &:has(#terms.ng-invalid.ng-touched.ng-dirty) { color: #f84e2c; }
+  &:has(#terms:checked) { color: #129912; }
+}
+
+input {
+  display: block;
+  width: 100%;
+  max-width: 15rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #758a8a;
+  background: #869999;
+  color: #142020;
+
+  &[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+    max-width: none;
+    margin-right: 0.5rem;
+    border-radius: 0;
+    border: none;
+    background: transparent;
+    color: #d9e2f1;
   }
 
-  input {
-    display: block;
-    width: 100%;
-    max-width: 15rem;
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #758a8a;
-    background: #869999;
-    color: #142020;
-
-    &[type="checkbox"] {
-      display: inline-block;
-      width: auto;
-      max-width: none;
-      margin-right: 0.5rem;
-      border-radius: 0;
-      border: none;
-      background: transparent;
-      color: #d9e2f1;
-    }
-
-    &.ng-invalid.ng-touched.ng-dirty {
-      background-color: #fbdcd6;
-      border-color: #f84e2c;
-    }
+  &.ng-invalid.ng-touched.ng-dirty {
+    background-color: #fbdcd6;
+    border-color: #f84e2c;
   }
+}
 
-  select {
-    display: block;
-    width: 100%;
-    max-width: 15rem;
-    padding: 0.25rem;
-    border-radius: 4px;
-    border: 1px solid #758a8a;
-    background: #869999;
-    color: #142020;
-  }
+select {
+  display: block;
+  width: 100%;
+  max-width: 15rem;
+  padding: 0.25rem;
+  border-radius: 4px;
+  border: 1px solid #758a8a;
+  background: #869999;
+  color: #142020;
 }
 
 .control-error {
@@ -84,16 +97,6 @@ fieldset {
   padding: 0.25rem 0 0 0;
   margin-bottom: 1rem;
   color: #ffca99;
-}
-
-.control-row {
-  margin: 0.5rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 0.5rem;
-
-  .control { flex: 1; }
 }
 
 hr {

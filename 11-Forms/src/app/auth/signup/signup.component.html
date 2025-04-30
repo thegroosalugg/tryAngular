@@ -3,27 +3,23 @@
   <h2>Welcome on board!</h2>
   <p>We just need a little bit of data from you to get you started 🚀</p>
 
+  <!-- REACTIVE FORMS DO NOT NEED NAME PROP ON INPUTS -->
   <div class="control">
     <label for="email">Email</label>
     <!-- formControlName binds to FormGroup -->
-    <input type="email" id="email" name="email" formControlName="email" />
+    <input type="email" id="email" formControlName="email" />
   </div>
 
   <!-- nested formGroups must also be bound -->
   <div class="control-row" formGroupName="passwords">
     <div class="control">
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" formControlName="password" />
+      <input type="password" id="password" formControlName="password" />
     </div>
 
     <div class="control">
       <label for="confirm-password">Confirm Password</label>
-      <input
-        type="password"
-          id="confirm-password"
-        name="confirm-password"
-        formControlName="confirmPassword"
-      />
+      <input type="password" id="confirm-password" formControlName="confirmPassword" />
     </div>
   </div>
 
@@ -35,12 +31,12 @@
       <div class="control">
         <label for="first-name">First Name</label>
         <!-- bind formControlName -->
-        <input id="first-name" name="first-name" formControlName="firstName" />
+        <input id="first-name" formControlName="firstName" />
       </div>
 
       <div class="control">
         <label for="last-name">Last Name</label>
-        <input id="last-name" name="last-name" formControlName="lastName" />
+        <input id="last-name" formControlName="lastName" />
       </div>
     </div>
 
@@ -52,13 +48,13 @@
         <div class="control">
           <label for="street">Street</label>
           <!-- bind formControlName -->
-          <input id="street" name="street" formControlName="street" />
+          <input id="street" formControlName="street" />
         </div>
 
         <div class="control">
           <label for="number">Number</label>
           <!-- bind formControlName -->
-          <input type="number" id="number" name="number" formControlName="number" />
+          <input type="number" id="number" formControlName="number" />
         </div>
       </div>
 
@@ -66,13 +62,13 @@
         <div class="control">
           <label for="post-code">Post Code</label>
           <!-- bind formControlName -->
-          <input id="post-code" name="post-code" formControlName="postCode" />
+          <input id="post-code" formControlName="postCode" />
         </div>
 
         <div class="control">
           <label for="city">City</label>
           <!-- bind formControlName -->
-          <input id="city" name="city" formControlName="city" />
+          <input id="city" formControlName="city" />
         </div>
       </div>
     </fieldset>
@@ -82,7 +78,8 @@
 
   <div class="control">
     <label for="role">What best describes your role?</label>
-    <select id="role" name="role" formControlName="role">
+    <!-- bind formControlName -->
+    <select id="role" formControlName="role">
       <option value="student" >Student </option>
       <option value="teacher" >Teacher </option>
       <option value="employee">Employee</option>
@@ -91,14 +88,16 @@
     </select>
   </div>
 
-  <fieldset>
+  <!-- bind formArrayName -->
+  <fieldset formArrayName="source">
     <legend>How did you find us?</legend>
     <div class="control">
+      <!-- formControlName here maps indexes as they appear in FormArray -->
       <input
          type="checkbox"
            id="google"
-         name="acquisition"
         value="google"
+        formControlName="0"
       />
       <label for="google">Google</label>
     </div>
@@ -107,8 +106,8 @@
       <input
          type="checkbox"
            id="friend"
-         name="acquisition"
         value="friend"
+        formControlName="1"
       />
       <label for="friend">Referred by friend</label>
     </div>
@@ -117,15 +116,16 @@
       <input
          type="checkbox"
            id="other"
-         name="acquisition"
         value="other"
+        formControlName="2"
       />
       <label for="other">Other</label>
     </div>
   </fieldset>
 
   <label for="terms">
-    <input type="checkbox" id="terms" name="terms" />
+    <!-- bind formControlName -->
+    <input type="checkbox" id="terms" formControlName="terms" />
     I agree to the terms and conditions
   </label>
 
