@@ -3,23 +3,14 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div>
     <label for="email">Email {{ isInvalid('email') ? 'invalid' : '' }}</label>
-    <input
-        id="email"
-      type="email"
-      name="email"
-      [formControl]="form.controls.email"
-    />
+    <!-- REACTIVE FORMS DO NOT NEED NAME PROP ON INPUTS -->
+    <input id="email" type="email" [formControl]="form.controls.email" />
   </div>
 
   <div>
     <label for="password">Password {{ isInvalid('password') ? 'invalid' : '' }}</label>
     <!-- shorthand way to connect input to the form control group -->
-    <input
-        id="password"
-      type="password"
-      name="password"
-      formControlName="password"
-    />
+    <input id="password" type="password" formControlName="password" />
   </div>
   <button>Login</button>
 </form>

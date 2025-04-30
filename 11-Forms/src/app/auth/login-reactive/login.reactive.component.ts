@@ -66,6 +66,8 @@ export class LoginReactiveComponent implements OnInit {
   }
 
   onSubmit() {
+    console.clear();
+    console.log(this.form.value);
     // mark controls as touched & dirty on submission -> fixes blank form submits
     for (const field in this.form.controls) {
       const control = this.form.get(field);
@@ -79,7 +81,7 @@ export class LoginReactiveComponent implements OnInit {
     }
 
     const { email, password } = this.form.value; // reactive forms offer better TS support
-    console.log('email', email, 'password', password);
+    console.log('Success! \n Email', email, '\n Password', password);
     this.form.reset();
   }
 }

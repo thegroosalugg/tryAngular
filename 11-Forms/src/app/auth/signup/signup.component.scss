@@ -31,8 +31,9 @@ fieldset {
 .control {
   margin: 0.5rem 0;
 
+  // control has child with ng-classes: then select label
   &:has(.ng-invalid.ng-touched.ng-dirty) label { color: #f98b75; }
-
+  // control has input checkbox child: then select self
   &:has(input[type="checkbox"]) {
     display: flex;
     align-items: center;
@@ -47,6 +48,7 @@ label {
   text-transform: uppercase;
   font-weight: bold;
 
+  // control has element with ID #terms
   &:has(#terms.ng-invalid.ng-touched.ng-dirty) { color: #f84e2c; }
   &:has(#terms:checked) { color: #129912; }
 }
@@ -89,16 +91,6 @@ select {
   color: #142020;
 }
 
-.control-error {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  height: 1.5rem;
-  padding: 0.25rem 0 0 0;
-  margin-bottom: 1rem;
-  color: #ffca99;
-}
-
 hr {
   margin: 1rem 0;
   border: 1px solid #147b73;
@@ -129,5 +121,16 @@ button {
   &:hover, &:focus {
     background: transparent;
     color: #869999;
+  }
+}
+
+.error { color: #ffca99; }
+
+// select a formGroupName (passwords) with ng-classes: then select child input & label
+[formgroupname].ng-invalid.ng-touched.ng-dirty {
+  label { color: #f98b75; }
+  input {
+    background-color: #fbdcd6;
+    border-color: #f84e2c;
   }
 }

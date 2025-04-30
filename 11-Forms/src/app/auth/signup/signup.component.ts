@@ -1,25 +1,39 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 type Role = 'student' | 'teacher' | 'employer' | 'founder' | 'other';
 
-const     validators = [Validators.required];
-const      minLength = Validators.minLength(6);
-const newFormControl = () => new FormControl('', { validators });
+const     validators = [Validators.required, Validators.minLength(6)] // for passwords
+const newFormControl = () => new FormControl('', { validators: [Validators.required] });
+// create factory function that receives generic input names and returns validator Fn
+const equalValues = (first: string, second: string) => {
+  return (control: AbstractControl) => {
+    const  firstVal = control.get(first)?.value; // get control by name
+    const secondVal = control.get(second)?.value;
+    if (firstVal === secondVal) return null; // valid returns null
+    return { valuesNotEqual: true }; // invalid returns error object
+  };
+};
 
 @Component({
      selector: 'app-signup',
-      imports: [ReactiveFormsModule], // directives bings to template
+      imports: [ReactiveFormsModule], // directives binds to template
   templateUrl: './signup.component.html',
      styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
   form = new FormGroup({
-        email: new FormControl('', { validators: [...validators, Validators.email] }),
-    passwords: new FormGroup({ // form controls can also be grouped & nested
-             password: new FormControl('', { validators: [...validators, minLength] }),
-      confirmPassword: new FormControl('', { validators: [...validators, minLength] }),
-    }),                                    // DRY - validators declared up top
+    email: new FormControl('', {
+      validators: [Validators.required, Validators.email],
+    }),
+    passwords: new FormGroup(
+      { // form controls can also be grouped & nested
+               password: new FormControl('', { validators }), // DRY: validators up top
+        confirmPassword: new FormControl('', { validators }),
+      }, // FormGroups can also receive validators to validate all controls in the group
+      // Note: ng-invalid etc will now be applied to the Group Div, not the Controls
+      { validators: [equalValues('password', 'confirmPassword')] }
+    ),
     fullName: new FormGroup({
       // more DRY, outsource: new FormControl('', { validators: [Validators.required] });
       firstName: newFormControl(),
@@ -56,6 +70,7 @@ export class SignupComponent {
   }
 
   onSubmit() {
+    console.clear();
     console.log(this.form.value);
     this.markSubmitted(this.form);
 

@@ -56,6 +56,9 @@ export class LoginTemplateComponent implements AfterViewChecked {
   }
 
   onSubmit(ngForm: NgForm) {
+    console.clear();
+    console.log(ngForm.value);
+
     for (const field in ngForm.controls) {
       const control = ngForm.controls[field];
       control.markAsTouched();
@@ -68,7 +71,7 @@ export class LoginTemplateComponent implements AfterViewChecked {
     }
 
     const { email, password } = ngForm.controls;
-    console.log('EMAIL:', email.value, 'PASSWORD', password.value);
+    console.log('Success! \n Email', email.value, '\n Password', password.value);
     ngForm.form.reset();
   }
 }

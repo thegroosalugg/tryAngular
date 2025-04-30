@@ -14,11 +14,13 @@
   <div class="control-row" formGroupName="passwords">
     <div class="control">
       <label for="password">Password</label>
+      <!-- bind formControlName -->
       <input type="password" id="password" formControlName="password" />
     </div>
 
     <div class="control">
       <label for="confirm-password">Confirm Password</label>
+      <!-- bind formControlName -->
       <input type="password" id="confirm-password" formControlName="confirmPassword" />
     </div>
   </div>
@@ -36,6 +38,7 @@
 
       <div class="control">
         <label for="last-name">Last Name</label>
+        <!-- bind formControlName -->
         <input id="last-name" formControlName="lastName" />
       </div>
     </div>
@@ -103,6 +106,7 @@
     </div>
 
     <div class="control">
+      <!-- bind formArray Index -->
       <input
          type="checkbox"
            id="friend"
@@ -113,6 +117,7 @@
     </div>
 
     <div class="control">
+      <!-- bind formArray Index -->
       <input
          type="checkbox"
            id="other"
@@ -133,4 +138,8 @@
     <button type="reset" class="btn-flat">Reset</button>
     <button>Sign up</button>
   </p>
+
+  @if (form.dirty && form.touched && form.invalid) {
+    <p class="error">Form Invalid - Check your inputs</p>
+  }
 </form>
