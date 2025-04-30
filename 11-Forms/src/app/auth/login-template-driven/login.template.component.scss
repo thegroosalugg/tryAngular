@@ -67,32 +67,7 @@ button {
   &:hover, &:focus { background-color: #319890; }
 }
 
-table {
-  border: 1px solid white;
-  padding: 0.5rem;
-  width: 100%;
-  text-align: center;
-
-  thead {
-    tr {
-      th {
-        &:first-of-type {
-          text-align: start;
-        }
-      }
-    }
-  }
-
-  tbody {
-    tr {
-      td {
-        &:first-of-type {
-          font-weight: 700;
-          color: #afafaf;
-          text-align: start;
-          text-transform: capitalize;
-        }
-      }
-    }
-  }
+p {
+  margin-left: 0.5rem;
+  font-weight: 700;
 }

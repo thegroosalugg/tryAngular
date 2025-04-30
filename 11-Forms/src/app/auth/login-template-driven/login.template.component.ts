@@ -1,17 +1,19 @@
-import { afterNextRender, Component, DestroyRef, inject, viewChild } from '@angular/core';
+import { afterNextRender, AfterViewChecked, Component, DestroyRef, inject, signal, viewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { debounceTime } from 'rxjs';
+import { TableComponent } from "../table/table.component";
 
 // *TEMPLATE DRIVEN APPROACH
 @Component({
      selector: 'app-login-template',
-      imports: [FormsModule],
+      imports: [FormsModule, TableComponent],
   templateUrl: './login.template.component.html',
      styleUrl: './login.template.component.scss',
 })
-export class LoginTemplateComponent {
-  form = viewChild.required<NgForm>('form'); // capture ngForm with #form #templateVar
+export class LoginTemplateComponent implements AfterViewChecked {
   private destroyRef = inject(DestroyRef);
+  form = viewChild.required<NgForm>('form'); // capture ngForm with #form #templateVar
+  viewReady = signal(false); // form controls will be ready after viewInit
 
   constructor() {
     // afterNextRender() defers execution until after the component has rendered once
@@ -40,6 +42,12 @@ export class LoginTemplateComponent {
       this.destroyRef.onDestroy(() => subscription?.unsubscribe());
     });
   }
+
+   ngAfterViewChecked() {
+    if (this.form().controls['email']) {
+      this.viewReady.set(true); // ensures controls are ready, to pass form to next component
+    }
+   }
 
   isInvalid(field: 'email' | 'password') {
     // Template forms must wait for viewInit before we can access any form props
