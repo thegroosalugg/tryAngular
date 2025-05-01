@@ -28,3 +28,15 @@ a, p, h1, h2, h3, h4, h5, h6, button, label, input, textarea, select, option {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #fff; border-radius: 5px; }
 // ** Reset ends here **
+
+:root {
+  --blue-900: #0d0a4c;
+  --blue-800: #0d4a80;
+  --blue-700: #1664a9;
+  --blue-600: #3f7eb5;
+  --blue-500: #357a8f;
+  --blue-400: #519ad9;
+  --blue-300: #65a5dd;
+  --blue-200: #67a3b5;
+  --blue-100: #c2dae1;
+}

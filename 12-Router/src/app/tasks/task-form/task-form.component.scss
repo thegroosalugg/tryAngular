@@ -1,18 +1,18 @@
 form {
-  background: #0d4a80;
+  background: var(--blue-800);
   padding: 1rem;
 }
 
 h2 {
   margin: 0;
-  color: #c2dae1;
+  color: var(--blue-100);
 }
 
 label {
   display: block;
   font-weight: bold;
   font-size: 0.85rem;
-  color: #c2dae1;
+  color: var(--blue-100);
 }
 
 input, textarea {
@@ -20,8 +20,8 @@ input, textarea {
   font: inherit;
   padding: 0.15rem 0.25rem;
   border-radius: 4px;
-  border: 1px solid #c2dae1;
-  background-color: #b1d0d9;
+  border: 1px solid var(--blue-200);
+  background: var(--blue-100);
 }
 
 .actions {
@@ -41,22 +41,22 @@ button {
 }
 
 button[type="button"] {
-  color: #c2dae1;
+  color: var(--blue-100);
 }
 
 button[type="button"]:hover,
 button[type="button"]:active {
-  color: #8dafb9;
+  color: var(--blue-200);
 }
 
 button[type="submit"] {
-  background-color: #67a3b5;
+  background-color: var(--blue-200);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
 button[type="submit"]:hover,
 button[type="submit"]:active {
-  background-color: #357a8f;
+  background-color: var(--blue-500);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }

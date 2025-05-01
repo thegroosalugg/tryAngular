@@ -11,7 +11,9 @@
     @if (activeUser) {
       <app-tasks [user]="activeUser" />
     } @else {
-      <p id="fallback">Click a button!</p>
+      <p id="fallback">
+        <span> Click a button!</span>
+      </p>
     }
   </section>
 </main>

@@ -1,7 +1,7 @@
 :host {
   padding: 1rem;
   border-radius: 8px;
-  background: #0d4a80;
+  background: var(--blue-800);
 }
 
 header {
@@ -22,9 +22,9 @@ header {
     border: none;
     border-radius: 4px;
     font-size: 0.9rem;
-    background: #3f7eb5;
+    background: var(--blue-400);
 
-    &:hover, &.active { background: #519ad9; }
+    &:hover, &.active { background: var(--blue-500); }
   }
 }
 
@@ -39,11 +39,11 @@ ul {
 
   li {
     padding: 1rem;
-    color: #15093f;
-    background: #65a5dd;
+    color: var(--blue-900);
+    background: var(--blue-300);
 
     time {
-      color: #24337d;
+      color: var(--blue-800);
     }
 
     p {
@@ -58,12 +58,12 @@ ul {
       border-radius: 4px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       font-size: 0.9rem;
-      color: #decdf2;
-      background: #072f74;
+      color: #eee;
+      background: var(--blue-900);
       transition: all 0.3s ease;
 
       &:hover, &.active {
-        background: #2f4770;
+        background: var(--blue-800);
         box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
       }
     }

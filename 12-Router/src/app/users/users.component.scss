@@ -16,11 +16,11 @@ li {
   border-radius: 6px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
   color: #b3c3d1;
-  background: #0d4a80;
+  background: var(--blue-800);
   cursor: pointer;
 
   &:hover, &.active {
-    background: #1664a9;
+    background: var(--blue-600);
     color: #ffffff;
   }
 
