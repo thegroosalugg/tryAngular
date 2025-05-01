@@ -1,15 +1,17 @@
 @let activeUser = users.active();
 @if (activeUser) {
   <app-modal>
-    <app-task-form [user]="activeUser"></app-task-form>
+    <app-task-form [user]="activeUser" />
   </app-modal>
 }
-<app-header></app-header>
+<app-header />
 <main>
-  <app-user></app-user>
-  @if (activeUser) {
-    <app-tasks [user]="activeUser"></app-tasks>
-  } @else {
-    <p id="fallback">Click a button!</p>
-  }
+  <section>
+    <app-user />
+    @if (activeUser) {
+      <app-tasks [user]="activeUser" />
+    } @else {
+      <p id="fallback">Click a button!</p>
+    }
+  </section>
 </main>

@@ -1,11 +1,11 @@
-header {
+:host {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   width: 90%;
   max-width: 50rem;
-  margin: 0 auto auto;
+  margin: 0 auto;
   text-align: center;
   background: linear-gradient(to bottom, #0d0a4c, #0d4a80);
   padding: 1rem;
@@ -32,7 +32,7 @@ p {
 }
 
 @media (min-width: 768px) {
-  header {
+  :host {
     padding: 2rem;
   }
 

@@ -1,3 +1,4 @@
+const rand = () => (Math.random() * 100).toFixed();
 export class Task {
        id: string;
    userId: string;
@@ -18,8 +19,8 @@ export class Task {
   }) {
     this.id      = crypto.randomUUID();
     this.userId  = userId;
-    this.title   = title;
-    this.summary = summary;
-    this.dueDate = dueDate;
+    this.title   = title   || 'Task ' + rand();
+    this.summary = summary || 'This is a summary of said task';
+    this.dueDate = dueDate || new Date().toISOString();
   }
 }

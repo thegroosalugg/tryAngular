@@ -15,7 +15,7 @@
 #modal {
   position: fixed; /* default is absolute */
   margin: 0; /* reset defaults when CSS-reset not loaded */
-  padding: 0;
+  padding: 0.2rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

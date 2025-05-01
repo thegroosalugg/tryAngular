@@ -1,10 +1,8 @@
-<ul>
-  <!-- signal values must all be called as functions(), zone.js values as props -->
-  @for (user of users.users(); track user.id) {
-    <!-- class = prop; .active = custom className; set conditionally -->
-    <li [class.active]="users.active() === user" (click)="users.select(user)">
-      <img [src]="'/users/' + user.img" [alt]="user.name" />
-      <span>{{ user.name }}</span>
-    </li>
-  }
-</ul>
+<!-- signal values must all be called as functions(), zone.js values as props -->
+@for (user of users.users(); track user.id) {
+  <!-- class = prop; .active = custom className; set conditionally -->
+  <li [class.active]="users.active() === user" (click)="users.select(user)">
+    <img [src]="'/users/' + user.img" [alt]="user.name" />
+    <span>{{ user.name }}</span>
+  </li>
+}

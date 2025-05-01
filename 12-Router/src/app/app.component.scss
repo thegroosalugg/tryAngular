@@ -3,18 +3,23 @@
   display: flex;
   flex-direction: column;
   color: white;
-  background: radial-gradient(ellipse closest-side at center, #c0c0c0, #7f7f7f);
+  background: radial-gradient(ellipse closest-side at center, #363e53, #1c1b1b);
 }
 
 main {
-  // flex: 1;
-  // padding: 1rem 10%;
-  width: 90%;
+  flex: 1;
+  padding: 1rem 10%;
+}
+
+section {
   max-width: 50rem;
-  margin: 1rem auto;
+  margin: auto;
   display: grid;
   grid-auto-flow: row;
   gap: 2rem;
+  padding: 0.2rem;
+  overflow-y: hidden;
+  overflow-x :scroll;
 }
 
 #fallback {
@@ -25,7 +30,7 @@ main {
 }
 
 @media (min-width: 768px) {
-  main {
+  section {
     grid-template-columns: 1fr 3fr;
   }
 
