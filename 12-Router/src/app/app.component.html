@@ -1,0 +1,15 @@
+@let activeUser = users.active();
+@if (activeUser) {
+  <app-modal>
+    <app-task-form [user]="activeUser"></app-task-form>
+  </app-modal>
+}
+<app-header></app-header>
+<main>
+  <app-user></app-user>
+  @if (activeUser) {
+    <app-tasks [user]="activeUser"></app-tasks>
+  } @else {
+    <p id="fallback">Click a button!</p>
+  }
+</main>

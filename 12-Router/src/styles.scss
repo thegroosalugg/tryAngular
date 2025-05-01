@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+// #TheLoginovReset
+*, *::before, *::after { box-sizing: border-box; }
+*                      { margin: 0;  padding: 0; }
+
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+input, textarea, select          { outline: none; border-radius: 0; }
+a                                { text-decoration: none;           }
+ul, ol                           {      list-style: none;           }
+span, a, strong, em, b, i        {         display: inline-block;   }
+button                           {          cursor: pointer;        }
+
+a, p, h1, h2, h3, h4, h5, h6, button, label, input, textarea, select, option {
+  overflow-wrap: break-word;
+      font-size: inherit;
+    font-family: inherit;
+    font-weight: 400;
+}
+
+::-webkit-scrollbar       { width: 1px; height: 1px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #fff; border-radius: 5px; }
+// ** Reset ends here **
