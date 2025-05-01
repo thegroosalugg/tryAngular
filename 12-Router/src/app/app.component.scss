@@ -22,24 +22,9 @@ section {
   overflow-x :scroll;
 }
 
-#fallback {
-  font-weight: bold;
-  font-size: 1.15rem;
-  border-radius: 4px;
-  background: var(--blue-800);
-
-  span {
-    margin: 2rem;
-  }
-}
 
 @media (min-width: 768px) {
   section {
     grid-template-columns: 1fr 3fr;
-  }
-
-  #fallback {
-    font-size: 1.5rem;
-    text-align: left;
   }
 }

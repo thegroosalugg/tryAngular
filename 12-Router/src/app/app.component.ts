@@ -6,6 +6,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { TaskFormComponent } from './tasks/task-form/task-form.component';
 import { ModalComponent } from './modal/modal.component';
 import { UsersService } from './users/users.service';
+import { FallbackComponent } from "./tasks/fallback/fallback.component";
 
 const imports = [
   HeaderComponent,
@@ -13,6 +14,7 @@ const imports = [
   TasksComponent,
   TaskFormComponent,
   ModalComponent,
+  FallbackComponent,
   RouterOutlet,
 ];
 @Component({
