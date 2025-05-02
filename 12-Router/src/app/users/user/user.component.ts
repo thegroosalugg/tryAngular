@@ -1,6 +1,6 @@
 import { Component, DestroyRef, effect, inject, input, OnInit, signal } from '@angular/core';
 import { UsersService } from '../users.service';
-import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, RedirectCommand, ResolveFn, Router, RouterLink, RouterOutlet, RouterStateSnapshot } from '@angular/router';
 
 @Component({
      selector: 'app-user',
@@ -10,25 +10,28 @@ import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/route
 })
 export class UserComponent implements OnInit {
   userId = input.required<string>(); // received via URL - names must match routes/:id
-  private          users = inject(UsersService);
-  private         router = inject(Router);
-  private activatedRoute = inject(ActivatedRoute); // *Observable alternative to input()
-  // private     destroyRef = inject(DestroyRef);
-  userName = signal('');
+  // private          users = inject(UsersService); // find user by userId
+  // private         router = inject(Router); // redirect
+  // private activatedRoute = inject(ActivatedRoute); // *OBSERVABLE alternative to input()
+  // private     destroyRef = inject(DestroyRef); // *OBSERVABLE - unsubscribe
+  // userName = signal('');   // *SIGNAL & *OBSERVABLE APPROACH - update this value
+  userName = input<string>(); // ResolveFn data: re-runs when route params change
+  message  = input<string>(); // Route config can pass custom data
 
-  constructor() {
-    effect(() => { // *signal based route protection
-      const user = this.users.find(this.userId());
-      if (!user) {
-        this.router.navigate(['']);
-        return;
-      }
-      this.userName.set(user.name);
-    });
-  }
+  // constructor() { // *SIGNAL based route protection
+  //   effect(() => {
+  //     const user = this.users.find(this.userId());
+  //     if (!user) {
+  //       this.router.navigate(['']);
+  //       return;
+  //     }
+  //     this.userName.set(user.name);
+  //   });
+  // }
 
-  ngOnInit() { // *observable based route protection
-    console.log(this.activatedRoute.snapshot); // single snapshot of subscribable data
+  ngOnInit() { // *OBSERVABLE based route protection
+    console.log(this.userName(), this.message());
+    // console.log(this.activatedRoute.snapshot); // single snapshot of subscribable data
     // const subscription = this.activatedRoute.paramMap.subscribe({
     //   // subscribe to paramMap to get userId
     //   next: (paramMap) => {
@@ -47,3 +50,20 @@ export class UserComponent implements OnInit {
     // this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 }
+
+// resolvers allow you to outsource route logic and lean the component
+export const resolveUserName: ResolveFn<string> = (
+  activatedRoute: ActivatedRouteSnapshot, // receives 2 snapshots automatically
+     routerState: RouterStateSnapshot
+) => {
+  const  users = inject(UsersService); // can inject services
+  const router = inject(Router);
+  const userId = activatedRoute.paramMap.get('userId');
+  if (userId) {
+    const user = users.find(userId);
+    if (user) return user.name;
+  }
+  // const root = router.parseUrl('/'); // TS example - basic URL tree creation
+  const root = router.createUrlTree(['']); // can create more complex tree from current path
+  return new RedirectCommand(root); // ResolveFn must return <T> | <RedirectCommand>
+}; // RedirectCommand requires a URL tree
