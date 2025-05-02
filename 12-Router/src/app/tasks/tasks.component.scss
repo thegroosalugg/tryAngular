@@ -1,3 +1,13 @@
+section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: capitalize;
+
+  a, p    { color: var(--blue-100); }
+  a:hover { color: var(--blue-200); }
+}
+
 ul {
   margin: 1rem 0;
   padding: 0.2rem;

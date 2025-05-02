@@ -1,4 +1,21 @@
 @if (userTasks().length > 0) {
+  <section>
+    <p>Sort by:</p>
+    <select (change)="sortBy(filter.value)" [value]="sort() || 'date'" #filter>
+      <option value="date">Date</option>
+      <option value="alpha">A-Z</option>
+    </select>
+    <!-- ./ stays on current path
+    queryParams: accept an object of key/value pairs to set as query parameters
+    queryParamsHandling: merge keeps existing other chained queries in tact -->
+    <a
+      routerLink="./"
+      [queryParams]="{ order: setOrder() }"
+      queryParamsHandling="merge"
+    >
+      {{ order() || 'Asc' }}
+    </a>
+  </section>
   <ul>
     @for (task of userTasks(); track task.id) {
       <li>
