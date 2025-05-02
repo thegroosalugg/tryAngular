@@ -13,33 +13,34 @@ import { Task } from './task.model';
 
 export class TasksComponent {
   userId = input.required<string>(); // receives URL params from parent route
-    sort = input<'date' | 'alpha'>(); // received via queryParams
-   order = input<'asc'  |  'desc'>(); // received via queryParams
+    sort = input<'date' | 'alpha'>('date'); // received via queryParams
+   order = input<'asc'  |  'desc'>('asc'); // received via queryParams
   private router = inject(Router);
   private  tasks = inject(TasksService);
 
   userTasks = computed(() =>
     this.tasks.byUser(this.userId()).sort((a, b) => {
-      let sortIndex: keyof Task = 'dueDate';
-      if (this.sort() === 'alpha') sortIndex = 'title';
-      return this.order() === 'desc'
-        ? a[sortIndex] > b[sortIndex]
-          ? -1
-          : 1
-        : a[sortIndex] > b[sortIndex]
-        ? 1
-        : -1;
+      const key = this.sort()  === 'alpha' ? 'title' : 'dueDate';
+      const dir = this.order() === 'desc'  ?      -1 : 1;
+      return           a[key]   >   b[key] ?     dir : -dir;
     })
   );
 
+  private setDefault(searchTerms: string[], query: string) {
+    return searchTerms.includes(query) ? query : searchTerms[0];
+  }
+
+  defaultOption = computed(() => this.setDefault(['date', 'alpha'], this.sort()));
+  defaultOrder  = computed(() => this.setDefault(['asc',   'desc'], this.order()));
+
   setOrder(): 'asc' | 'desc' {
-    if (!this.order()) return 'desc';
+    if (!['asc', 'desc'].includes(this.order())) return 'desc';
     return this.order() === 'asc' ? 'desc' : 'asc';
   }
 
-  sortBy(filter: string) {
+  sortBy(sort: string) {
     this.router.navigate([], { // empty array keeps to current path
-      queryParams: { sort: filter }, // programatically set query params
+      queryParams: { sort }, // programatically set query params
       queryParamsHandling: 'merge', // merges any existing query params
     });
   }

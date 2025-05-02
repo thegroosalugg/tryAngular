@@ -1,7 +1,7 @@
 @if (userTasks().length > 0) {
   <section>
     <p>Sort by:</p>
-    <select (change)="sortBy(filter.value)" [value]="sort() || 'date'" #filter>
+    <select (change)="sortBy(option.value)" [value]="defaultOption()" #option>
       <option value="date">Date</option>
       <option value="alpha">A-Z</option>
     </select>
@@ -13,14 +13,13 @@
       [queryParams]="{ order: setOrder() }"
       queryParamsHandling="merge"
     >
-      {{ order() || 'Asc' }}
+      {{ defaultOrder() }}
     </a>
   </section>
   <ul>
     @for (task of userTasks(); track task.id) {
       <li>
         <h3>{{ task.title }}</h3>
-        <!-- | pipes | are output transformers. Need importing. Config: optional -->
         <time>{{ task.dueDate | date: 'fullDate' }}</time>
         <p>{{ task.summary }}</p>
         <button (click)="markCompleted(task)">Complete</button>
