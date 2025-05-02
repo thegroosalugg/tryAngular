@@ -28,35 +28,25 @@ input, textarea {
   margin: 1rem 0 0;
   display: flex;
   justify-content: flex-end;
-  gap: 0.25rem;
+  align-items: center;
+  gap: 1rem;
 }
 
 button {
-  font: inherit;
-  cursor: pointer;
   border: none;
   padding: 0.35rem 1.25rem;
   border-radius: 4px;
-  background-color: transparent;
-}
-
-button[type="button"] {
-  color: var(--blue-100);
-}
-
-button[type="button"]:hover,
-button[type="button"]:active {
-  color: var(--blue-200);
-}
-
-button[type="submit"] {
   background-color: var(--blue-200);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--blue-500);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+  }
 }
 
-button[type="submit"]:hover,
-button[type="submit"]:active {
-  background-color: var(--blue-500);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+a {
+  color: var(--blue-100);
+  &:hover { color: var(--blue-200); }
 }

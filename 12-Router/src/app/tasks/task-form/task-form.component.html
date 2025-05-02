@@ -13,7 +13,9 @@
     <input type="date" id="due-date" name="due-date" [(ngModel)]="dueDate"/>
   </p>
   <p class="actions">
-    <button type="button">Cancel</button>
-    <button type="submit">Create</button>
+    <!-- ../ chops the last part of your URL
+    </users/:userId/tasks/new> => </users/:userId/tasks> -->
+    <a routerLink="../" >Cancel</a>
+    <button>Create</button>
   </p>
 </form>

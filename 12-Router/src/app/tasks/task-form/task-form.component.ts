@@ -2,10 +2,11 @@ import { Component, input, signal, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Task } from '../task.model';
 import { TasksService } from '../tasks.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
      selector: 'app-task-form',
-      imports: [FormsModule],
+      imports: [FormsModule, RouterLink],
   templateUrl: './task-form.component.html',
      styleUrl: './task-form.component.scss'
 })
@@ -15,7 +16,8 @@ export class TaskFormComponent {
     title = signal('');
   summary = signal('');
   dueDate = signal('');
-  private tasks = inject(TasksService);
+  private tasks  = inject(TasksService);
+  private router = inject(Router); // provides various router services
 
   private clearForm() {
     this.title.set('');
@@ -33,5 +35,7 @@ export class TaskFormComponent {
 
     this.clearForm();
     this.tasks.add(task);
-  }
+    this.router.navigate(['/users', this.userId(), 'tasks'], {
+      replaceUrl: true, // prevents back button returning to form
+    });  }
 }
