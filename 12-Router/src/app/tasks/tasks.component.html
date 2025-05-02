@@ -1,5 +1,5 @@
 <header>
-  <h2>{{ user().name }}'s Tasks</h2>
+  <h2>{{ userName() }}'s Tasks</h2>
   <button (click)="openModal()">Add Task</button>
 </header>
 @if (userTasks().length > 0) {

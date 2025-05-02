@@ -2,6 +2,7 @@ import { Component, computed, input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ModalService } from 'app/modal/modal.service';
 import { TasksService } from './tasks.service';
+import { UsersService } from 'app/users/users.service';
 import { User } from 'app/users/user.model';
 import { Task } from './task.model';
 
@@ -13,11 +14,18 @@ import { Task } from './task.model';
 })
 
 export class TasksComponent {
-  user = input.required<User>(); 
+  userId = input.required<string>(); // received via URL - names must match routes/:id
 
-  constructor(private modal: ModalService, private tasks: TasksService) {}
+  constructor(
+    private modal: ModalService,
+    private tasks: TasksService,
+    private users: UsersService
+  ) {}
 
-  userTasks = computed(() => this.tasks.byUser(this.user().id));
+  userTasks = computed(() => this.tasks.byUser(this.userId()));
+  userName = computed(
+    () => this.users.users().find(({ id }) => id === this.userId())?.name
+  );
 
   markCompleted(task: Task) {
     this.tasks.remove(task);

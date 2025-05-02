@@ -12,10 +12,6 @@ export const USERS = [
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  users  = signal<User[]>(USERS);
+  users = signal<User[]>(USERS);
   active = signal<User | null>(null);
-
-  select(user: User) {
-    this.active.set(user);
-  }
 }

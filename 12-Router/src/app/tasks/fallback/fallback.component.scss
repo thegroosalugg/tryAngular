@@ -1,18 +1,19 @@
 :host {
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.15rem;
+  display: flex;
+  height: 100%;
   border-radius: 4px;
   background: var(--blue-800);
 }
 
 p {
-  margin: 2rem;
+  margin: 2rem auto;
+  font-weight: bold;
+  font-size: 1.15rem;
 }
 
 @media (min-width: 768px) {
-  :host {
+  p {
     font-size: 1.5rem;
-    text-align: left;
+    margin: 2rem;
   }
 }

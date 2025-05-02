@@ -2,19 +2,15 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { UsersComponent } from './users/users.component';
-import { TasksComponent } from './tasks/tasks.component';
 import { TaskFormComponent } from './tasks/task-form/task-form.component';
 import { ModalComponent } from './modal/modal.component';
 import { UsersService } from './users/users.service';
-import { FallbackComponent } from "./tasks/fallback/fallback.component";
 
 const imports = [
   HeaderComponent,
   UsersComponent,
-  TasksComponent,
   TaskFormComponent,
   ModalComponent,
-  FallbackComponent,
   RouterOutlet,
 ];
 @Component({

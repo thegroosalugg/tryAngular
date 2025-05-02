@@ -5,7 +5,6 @@ import { ModalService } from 'app/modal/modal.service';
 import { User } from 'app/users/user.model';
 import { Task } from '../task.model';
 
-
 @Component({
      selector: 'app-task-form',
       imports: [FormsModule],

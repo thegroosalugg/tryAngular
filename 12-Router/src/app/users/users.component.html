@@ -1,8 +1,11 @@
-<!-- signal values must all be called as functions(), zone.js values as props -->
 @for (user of users.users(); track user.id) {
-  <!-- class = prop; .active = custom className; set conditionally -->
-  <li [class.active]="users.active() === user" (click)="users.select(user)">
+  <!-- routerLink: when using array, / is added automatically by Angular after each element
+  routerLinkActive: sets a css class when the current URL matches the path -->
+  <a
+    [routerLink]="['/users', user.id]"
+    routerLinkActive="active"
+  >
     <img [src]="'/users/' + user.img" [alt]="user.name" />
     <span>{{ user.name }}</span>
-  </li>
+  </a>
 }

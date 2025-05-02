@@ -8,10 +8,8 @@
 <main>
   <section>
     <app-user />
-    @if (activeUser) {
-      <app-tasks [user]="activeUser" />
-    } @else {
-      <app-fallback />
-    }
+    <div>
+      <router-outlet />
+    </div>
   </section>
 </main>
