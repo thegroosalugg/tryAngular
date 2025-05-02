@@ -1,24 +1,24 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, signal, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Task } from '../task.model';
 import { TasksService } from '../tasks.service';
 import { ModalService } from 'app/modal/modal.service';
-import { User } from 'app/users/user.model';
-import { Task } from '../task.model';
+import { ModalComponent } from 'app/modal/modal.component';
 
 @Component({
      selector: 'app-task-form',
-      imports: [FormsModule],
+      imports: [FormsModule, ModalComponent],
   templateUrl: './task-form.component.html',
      styleUrl: './task-form.component.scss'
 })
 
 export class TaskFormComponent {
+   userId = input.required<string>();
     title = signal('');
   summary = signal('');
   dueDate = signal('');
-     user = input.required<User>(); // no usersService avoids redundant internal null checks
-
-  constructor(private modal: ModalService, private tasks: TasksService) {}
+  private modal = inject(ModalService);
+  private tasks = inject(TasksService);
 
   private clearForm() {
     this.title.set('');
@@ -27,13 +27,12 @@ export class TaskFormComponent {
   }
 
   closeModal() {
-    this.modal.toggle(false);
+    this.modal.close();
   }
 
   onSubmit() {
-    // e.preventDefault(); // not required with Angular. FormModule handles it.
     const task = new Task({
-       userId: this.user().id,
+       userId: this.userId(),
         title: this.title(),
       summary: this.summary(),
       dueDate: this.dueDate(),

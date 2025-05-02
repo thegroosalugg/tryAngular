@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UsersService } from './users.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -10,5 +10,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 
 export class UsersComponent {
-  constructor(public users: UsersService) {}
+  private service = inject(UsersService);
+  users = this.service.users;
 }

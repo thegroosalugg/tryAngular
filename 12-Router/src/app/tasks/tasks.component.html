@@ -1,3 +1,6 @@
+@if (showModal()) {
+  <app-task-form [userId]="userId()" />
+}
 <header>
   <h2>{{ userName() }}'s Tasks</h2>
   <button (click)="openModal()">Add Task</button>

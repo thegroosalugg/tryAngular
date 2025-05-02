@@ -12,6 +12,10 @@ export const USERS = [
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  users = signal<User[]>(USERS);
-  active = signal<User | null>(null);
+  private _users = signal<User[]>(USERS);
+  users = this._users.asReadonly();
+
+  find(userId: string) {
+    return this.users().find(({ id }) => id === userId);
+  }
 }

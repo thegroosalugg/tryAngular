@@ -2,19 +2,22 @@ import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {
-     isOpen = signal(false);
-  isClosing = signal(false);
+  private _isOpen    = signal(false);
+  private _isClosing = signal(false); // tracks <Modal/> closing (animation) state
+  onClose   = signal<(() => void) | null>(null); // set by constructors injecting this service
+  isOpen    = this._isOpen.asReadonly();
+  isClosing = this._isClosing.asReadonly();
 
-  toggle(shouldOpen: boolean) {
-    if (shouldOpen) {
-      this.isOpen.set(true);
-    } else {
-      this.isClosing.set(true);
+  open() {
+    this._isOpen.set(true);
+  }
 
-      setTimeout(() => {
-        this.isClosing.set(false); // end animation
-        this.isOpen.set(false); // close modal
-      }, 500); // matches animation duration
-    }
+  close() {
+    this._isClosing.set(true); // start animation
+    setTimeout(() => {
+      this._isClosing.set(false); // end animation
+      this.onClose()?.(); // invoke callback (optional)
+      this._isOpen.set(false); // close modal
+    }, 500); // matches animation duration
   }
 }

@@ -1,13 +1,8 @@
-@let activeUser = users.active();
-@if (activeUser) {
-  <app-modal>
-    <app-task-form [user]="activeUser" />
-  </app-modal>
-}
 <app-header />
 <main>
   <section>
     <app-user />
+    <!-- wrap around outlet as it adds an invisible node to the DOM and absorbs styles -->
     <div>
       <router-outlet />
     </div>
