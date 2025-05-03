@@ -12,10 +12,11 @@ import { Router, RouterLink } from '@angular/router';
 })
 
 export class TaskFormComponent {
-   userId = input.required<string>(); // receives URL params from parent route
-    title = signal('');
-  summary = signal('');
-  dueDate = signal('');
+     userId = input.required<string>(); // receives URL params from parent route
+      title = signal('');
+    summary = signal('');
+    dueDate = signal('');
+  submitted = signal(false); // signal CanDeactiveFn in routes
   private tasks  = inject(TasksService);
   private router = inject(Router); // provides various router services
 
@@ -35,6 +36,7 @@ export class TaskFormComponent {
 
     this.clearForm();
     this.tasks.add(task);
+    this.submitted.set(true);
     this.router.navigate(['/users', this.userId(), 'tasks'], {
       replaceUrl: true, // prevents back button returning to form
     });
