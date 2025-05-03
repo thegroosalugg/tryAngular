@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--blue-800);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+
+  h2 {
+    margin: 0;
+    font-size: 0.9rem;
+    width: 60%;
+    text-wrap: balance;
+  }
+
+  a {
+    padding: 0.35rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background: var(--blue-400);
+    transition: 0.3s ease-in-out;
+
+    &:hover, &.active { background: var(--blue-500); }
+  }
+}
+
+@media (min-width: 768px) {
+  header h2 {
+    font-size: 1.25rem;
+  }
+}
