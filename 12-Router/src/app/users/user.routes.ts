@@ -34,7 +34,9 @@ export const userRoutes: Routes = [
          path: 'tasks', // </users/:userId/tasks>
     component: TasksComponent,
     // by default, ResolveFn does not re-run when queryParamsChange - it must be configured
-    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+    // runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+    // set to always for markCompleted which navigates without changing url parth
+    runGuardsAndResolvers: 'always',
     resolve: {
       userTasks: resolveUserTasks,
     },

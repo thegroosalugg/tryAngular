@@ -1,5 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { ActivatedRouteSnapshot, ResolveFn, Router, RouterLink, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, Router, RouterLink, RouterStateSnapshot } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { TasksService } from './tasks.service';
 import { Task } from './task.model';
@@ -16,8 +16,9 @@ export class TasksComponent {
   userTasks = input.required<Task[]>(); // when using *ResolveFn
        sort = input<'date' | 'alpha'>('date'); // received via queryParams
       order = input<'asc'  |  'desc'>('asc'); // received via queryParams
-  private router = inject(Router);
-  private  tasks = inject(TasksService);
+  private         router = inject(Router);
+  private          tasks = inject(TasksService);
+  private activatedRoute = inject(ActivatedRoute); // required for relative to this path navigation
 
   // original contained function
   // userTasks = computed(() =>
@@ -49,6 +50,12 @@ export class TasksComponent {
 
   markCompleted(task: Task) {
     this.tasks.remove(task);
+    // trigger page reload with navigate so ResolveFn can re-run
+    this.router.navigate([], { // empty array keeps to current path
+      relativeTo: this.activatedRoute, // resolve navigation path relative to current route
+      onSameUrlNavigation: 'reload', // no path change - retrigger component lifecycle
+      queryParamsHandling: 'preserve' // preserves query parameters
+    });
   }
 }
 
