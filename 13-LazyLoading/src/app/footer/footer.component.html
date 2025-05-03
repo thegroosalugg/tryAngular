@@ -1,0 +1,8 @@
+<!-- defer will load component lazily on various triggers
+should not be used in App Component as that is always loaded eagerly -->
+<!-- @defer (on viewport) { -->
+@defer (on interaction; prefetch on hover) {
+  <app-offer-preview />
+} @placeholder {
+  <p>we might have an offer...</p>
+}

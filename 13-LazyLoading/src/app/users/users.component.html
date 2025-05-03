@@ -1,0 +1,9 @@
+@for (user of users(); track user.id) {
+  <a
+    [routerLink]="['/users', user.id, 'tasks']"
+    routerLinkActive="active"
+  >
+    <img [src]="'/users/' + user.img" [alt]="user.name" />
+    <span>{{ user.name }}</span>
+  </a>
+}
