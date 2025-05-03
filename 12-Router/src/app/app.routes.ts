@@ -5,7 +5,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { userRoutes } from './users/user.routes';
 
 export const routes: Routes = [
-  { path: '', component: FallbackComponent },
+  { path: '', component: FallbackComponent, title: 'Home'},
   {
          path: 'users/:userId', // parent route
     component: UserComponent,
@@ -13,5 +13,5 @@ export const routes: Routes = [
      resolve: { userName: resolveUserName }, // resolver functions return <T> | redirect
     children: userRoutes, // outsource children routes
   },
-  { path: '**', component: NotFoundComponent } // ** catch all other routes path
+  { path: '**', component: NotFoundComponent, title: 'Error' } // ** catch all other routes path
 ];
