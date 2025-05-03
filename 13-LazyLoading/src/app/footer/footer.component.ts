@@ -5,7 +5,7 @@ import { OfferPreviewComponent } from "../offer-preview/offer-preview.component"
      selector: 'app-footer',
   templateUrl: './footer.component.html',
      styleUrl: './footer.component.scss',
-     imports: [OfferPreviewComponent],
+      imports: [OfferPreviewComponent],
 })
 
 export class FooterComponent {}

@@ -25,4 +25,8 @@ export class OfferPreviewComponent {
   remainingTime = this.timer.pipe(
     map((val) => Math.round((val / 100) * OFFER_TIME))
   );
+
+  reset() {
+    this.offerExpired.set(false);
+  }
 }

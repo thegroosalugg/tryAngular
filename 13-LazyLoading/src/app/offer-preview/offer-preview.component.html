@@ -9,5 +9,8 @@
   </div>
   <button>View Offer</button>
 } @else {
-  <p class="expired">Unfortunately, the offer expired!</p>
+  <p class="expired">
+    <span>Unfortunately, the offer expired!</span>
+    <span (click)="reset()">RESET</span>
+  </p>
 }

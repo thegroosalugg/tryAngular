@@ -27,7 +27,7 @@ export const TASKS = [
   },
 ]
 
-@Injectable({ providedIn: 'root' })
+@Injectable() // injected in user routes
 export class TasksService {
   private tasks = signal<Task[]>(TASKS);
 
