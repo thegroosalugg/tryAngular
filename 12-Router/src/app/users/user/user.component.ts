@@ -12,7 +12,7 @@ export class UserComponent implements OnInit {
   userId = input.required<string>(); // received via URL - names must match routes/:id
   // private          users = inject(UsersService); // find user by userId
   // private         router = inject(Router); // redirect
-  // private activatedRoute = inject(ActivatedRoute); // *OBSERVABLE alternative to input()
+  private activatedRoute = inject(ActivatedRoute); // *OBSERVABLE alternative to input()
   // private     destroyRef = inject(DestroyRef); // *OBSERVABLE - unsubscribe
   // userName = signal('');   // *SIGNAL & *OBSERVABLE APPROACH - update this value
   userName = input<string>(); // ResolveFn data: re-runs when route params change
@@ -31,9 +31,15 @@ export class UserComponent implements OnInit {
 
   ngOnInit() { // *OBSERVABLE based route protection
     console.log(this.userName(), this.message());
+    // *OBSERVABLE method for getting query parameters
+    this.activatedRoute.queryParams.subscribe({ next: (val) => console.log(val)});
+    // *OBSERVABLE method for getting both, router Data & ResolveFn data
+    this.activatedRoute.data.subscribe({ next: (val) => console.log(val)});
+
     // console.log(this.activatedRoute.snapshot); // single snapshot of subscribable data
+
+    // *OBSERVABLE method for getting dynamic ID parameters
     // const subscription = this.activatedRoute.paramMap.subscribe({
-    //   // subscribe to paramMap to get userId
     //   next: (paramMap) => {
     //     const userId = paramMap.get('userId');
     //     if (userId) {

@@ -1,5 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRouteSnapshot, ResolveFn, Router, RouterLink, RouterStateSnapshot } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { TasksService } from './tasks.service';
 import { Task } from './task.model';
@@ -12,19 +12,21 @@ import { Task } from './task.model';
 })
 
 export class TasksComponent {
-  userId = input.required<string>(); // receives URL params from parent route
-    sort = input<'date' | 'alpha'>('date'); // received via queryParams
-   order = input<'asc'  |  'desc'>('asc'); // received via queryParams
+     userId = input.required<string>(); // receives URL params from parent route
+  userTasks = input.required<Task[]>(); // when using *ResolveFn
+       sort = input<'date' | 'alpha'>('date'); // received via queryParams
+      order = input<'asc'  |  'desc'>('asc'); // received via queryParams
   private router = inject(Router);
   private  tasks = inject(TasksService);
 
-  userTasks = computed(() =>
-    this.tasks.byUser(this.userId()).sort((a, b) => {
-      const key = this.sort()  === 'alpha' ? 'title' : 'dueDate';
-      const dir = this.order() === 'desc'  ?      -1 : 1;
-      return           a[key]   >   b[key] ?     dir : -dir;
-    })
-  );
+  // original contained function
+  // userTasks = computed(() =>
+  //   this.tasks.byUser(this.userId()).sort((a, b) => {
+  //     const key = this.sort()  === 'alpha' ? 'title' : 'dueDate';
+  //     const dir = this.order() === 'desc'  ?      -1 : 1;
+  //     return           a[key]   >   b[key] ?     dir : -dir;
+  //   })
+  // );
 
   private setDefault(searchTerms: string[], query: string) {
     return searchTerms.includes(query) ? query : searchTerms[0];
@@ -49,3 +51,20 @@ export class TasksComponent {
     this.tasks.remove(task);
   }
 }
+
+// resolvers allow you to outsource route logic and lean the component
+export const resolveUserTasks: ResolveFn<Task[]> = (
+  activatedRoute: ActivatedRouteSnapshot, // receives 2 snapshots automatically
+  routerState: RouterStateSnapshot
+) => {
+  const  tasks = inject(TasksService);
+  const userId = activatedRoute.paramMap.get('userId'); // Map based API for params
+  const   sort = activatedRoute.queryParams['sort']; // Object based: gets raw values
+  const  order = activatedRoute.queryParams['order']; // can also use queryParamMap.get()
+  if (!userId) return [];
+  return tasks.byUser(userId).sort((a, b) => {
+    const key =  sort === 'alpha' ? 'title' : 'dueDate';
+    const dir = order === 'desc'  ?      -1 : 1;
+    return     a[key]  >  b[key]  ?     dir : -dir;
+  });
+};

@@ -37,5 +37,6 @@ export class TaskFormComponent {
     this.tasks.add(task);
     this.router.navigate(['/users', this.userId(), 'tasks'], {
       replaceUrl: true, // prevents back button returning to form
-    });  }
+    });
+  }
 }
