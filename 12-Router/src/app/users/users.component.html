@@ -1,0 +1,12 @@
+@for (user of users(); track user.id) {
+  <!-- routerLink: when using array, / is added automatically by Angular after each element
+  routerLinkActive: sets a css class when the current URL matches the path
+  /users/:userId/tasks: routed to child route -->
+  <a
+    [routerLink]="['/users', user.id, 'tasks']"
+    routerLinkActive="active"
+  >
+    <img [src]="'/users/' + user.img" [alt]="user.name" />
+    <span>{{ user.name }}</span>
+  </a>
+}

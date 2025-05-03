@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--blue-800);
+}
+
+p {
+  margin: 2rem auto;
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+
+@media (min-width: 768px) {
+  p {
+    font-size: 1.5rem;
+    margin: 2rem;
+  }
+}

@@ -1,0 +1,46 @@
+:host {
+  padding: 0.2rem;
+  display: flex;
+  gap: 0.5rem;
+  overflow: auto;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem;
+  width: 100%;
+  min-width: 10rem;
+  text-align: left;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  color: #b3c3d1;
+  background: var(--blue-800);
+  cursor: pointer;
+
+  &:hover, &.active {
+    background: var(--blue-600);
+    color: #ffffff;
+  }
+
+  img {
+    width: 2rem;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  span {
+    font-size: 0.8rem;
+    font-weight: normal;
+  }
+}
+
+
+@media (min-width: 768px) {
+  :host {
+    flex-direction: column;
+  }
+}
